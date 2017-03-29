@@ -84,9 +84,5 @@ angular.module('appService', [])
             successList:function () {
                 return $rootScope.dataList;
             }
-        //     dataListService.dataListUrl(address,postData);
-        // $scope.on('dataList.Service',function () {
-        //     $scope.list=dataListService.successList
-        // })
         }
     }]);

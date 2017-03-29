@@ -1,9 +1,34 @@
 angular.module('userCtrl', [])
-//    世界观
-    .controller('indexCtrl', ['$scope', '$http', '$timeout', '$compile', 'Upload', function ($scope, $http, $timeout, $compile, Upload) {
+// 首页
+    .controller('indexCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource', function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource) {
+        // $scope.url = MY.API + '';
+        // var getUser = $resource(
+        // $scope.url + 'type',
+        // {
+        //     id:'@id'
+        // },{
+        //
+        // })
         $scope.indecCtrl = 'indexCtrl';
-        $scope.indexCtrl='indexCtrl';
+        $scope.newLay = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/model/newLayout.html',
+                controller: 'homeCtrl',
+                scope: $scope,
+                size: 'lg'
+            });
+        }
     }])
+    //首页新增
+    .controller('homeCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
+        var first = $resource($scope.url + 'add');
+        $scope.first = function (id) {
+            first.save({name: name, id: id}, function () {
+                $modalInstance.close();
+            })
+        }
+    }])
+    //    世界观
     .controller('worldCtrl', ['$scope', '$stateParams', '$resource', function ($scope, $stateParams, $resource) {
         $scope.user = '世界观';
         $scope.index = $stateParams.volumeId;
@@ -39,13 +64,32 @@ angular.module('userCtrl', [])
                 });
             });
         }
-
     }])
     //    CG图例
     .controller('legendCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
         $scope.user = 'CG图例'
     }])
     //    目录
-    .controller('catalogCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
-        $scope.user = '目录'
-    }]);
+    .controller('catalogCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource',function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource) {
+        $scope.user = '目录';
+        // dataListService.dataListUrl(address, postData);
+        // $scope.on('dataList.Service', function () {
+        //     $scope.list = dataListService.successList
+        // });
+        $scope.newCata = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/model/newlyCatalog.html',
+                controller: 'newLayCtrl',
+                scope: $scope,
+                size: 'lg'
+            });
+        }
+    }])
+    .controller('newLayCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
+                var first = $resource($scope.url + 'add');
+                $scope.first = function (id) {
+                    first.save({name: name, id: id}, function () {
+                        $modalInstance.close();
+                    })
+                }
+    }])

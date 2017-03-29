@@ -24,7 +24,21 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         .state('layouts', {
             url: "/layouts",
             templateUrl: "views/common/layouts.html",
-            controller: "indexCtrl"
+            controller: "indexCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+
+                            ]
+                        }
+                    ]);
+                }
+            }
         })
         //卷导入页面公共
         .state('volume', {
@@ -64,17 +78,17 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
             url: "/Legend/:volumeId",
             templateUrl: "views/volume/Legend.html",
             params: {"volumeId": null},
-            controller: "legendCtrl"
-            // resolve: {
-            //     loadPlugin: function ($ocLazyLoad) {
-            //         return $ocLazyLoad.load([
-            //             {
-            //                 files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
-            //                     'css/plugins/blueimp/css/blueimp-gallery.min.css']
-            //             }
-            //         ]);
-            //     }
-            // }
+            controller: "legendCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css']
+                        }
+                    ]);
+                }
+            }
         })
         // //卷-目录
         .state('volume.Catalog', {

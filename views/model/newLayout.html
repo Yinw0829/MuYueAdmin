@@ -1,0 +1,80 @@
+<div class="ibox float-e-margins table m-b-none">
+    <div class="modal-header h3">
+        新增首页
+    </div>
+    <div class="text-center p-md">
+        <form name="myForm" class="form-horizontal" method="get">
+            <div class="form-group">
+                <label class="col-sm-1 control-label">图片:</label>
+                <div class="upload-div col-sm-6"  >
+                    <div class="upload-buttons">
+                        <div id="editArea">
+                            <!--<fieldset>-->
+                                <div class="preview">
+                                    <img ngf-src="!files[0].$error && files[0]">
+                                    <!--<img ngf-src="item.type">-->
+                                    <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
+                                    <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
+                                </div>
+                                <div class="up-buttons">
+                                    <button ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
+                                         ngf-model-options="modelOptionsObj"
+                                         ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
+                                         ng-disabled="disabled" ngf-capture="capture"
+                                         ngf-drag-over-class="dragOverClassObj"
+                                         ngf-validate="validateObj"
+                                         ngf-resize="resizeObj"
+                                         ngf-resize-if="resizeIfFn($file, $width, $height)"
+                                         ngf-dimensions="dimensionsFn($file, $width, $height)"
+                                         ngf-duration="durationFn($file, $duration)"
+                                         ngf-keep="keepDistinct ? 'distinct' : keep"
+                                         ngf-fix-orientation="orientation"
+                                         ngf-max-files="maxFiles"
+                                         ngf-ignore-invalid="ignoreInvalid"
+                                         ngf-run-all-validations="runAllValidations"
+                                         ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable">图片上传
+                                        <span ng-show="dropAvailable"></span>
+                                    </button>
+                                </div>
+                            <!--</fieldset>-->
+                        </div>
+                    </div>
+                    <br/>
+                    <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">简介:</label>
+                <div class="col-sm-8"><textarea type="text" class="form-control" value=""></textarea></div>
+            </div>
+            <div class="form-group"><label
+                    class="col-sm-1 control-label">链接：</label>
+                <div class="col-sm-5">
+                    <select class="form-control small" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">序号：</label>
+                <div class="col-sm-5">
+                    <input type="number" name="count" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" ng-required="true" autocomplete="off" min="1" max="5" ng-model="count" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.max">
+                        序号不能超过5
+                    </div>
+                    <div class="alert alert-danger help-block"
+                         ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-5">
+                <button class="btn-lg btn-primary btn-outline">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
