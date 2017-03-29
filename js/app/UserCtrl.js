@@ -1,7 +1,8 @@
 angular.module('userCtrl', [])
 //    世界观
     .controller('indexCtrl', ['$scope', '$http', '$timeout', '$compile', 'Upload', function ($scope, $http, $timeout, $compile, Upload) {
-        $scope.indecCtrl = 'indexCtrl'
+        $scope.indecCtrl = 'indexCtrl';
+        $scope.indexCtrl='indexCtrl';
     }])
     .controller('worldCtrl', ['$scope', '$stateParams', '$resource', function ($scope, $stateParams, $resource) {
         $scope.user = '世界观';
