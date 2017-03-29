@@ -1,0 +1,235 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>{{user}}{{index}}</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a>第一卷</a>
+            </li>
+            <li class="active">
+                <strong>目录</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2">
+        <button class="btn btn-outline btn-lg btn-primary" ><i
+                class="fa fa-plus"></i>新增</button>
+    </div>
+</div>
+
+<div class="wrapper-md">
+    <tabset class="tab-container">
+        <tab>
+            <tab-heading>
+                中文简体
+            </tab-heading>
+            <div class="wrapper-md">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>名称</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td ng-bind="$index+1">1</td>
+                                <td>睦月·小说</td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon"><i
+                                            class="fa fa-laptop"></i>|查看详细
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon"><i
+                                            class="fa fa-edit"></i>|编辑
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon"><i
+                                            class="fa fa-unlock-alt"></i>|删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row ">
+                        <div class="col-sm-12">
+                            <tm-pagination conf="paginationConf" class="paginationGid"></tm-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab>
+            <tab-heading>
+                中文繁體
+            </tab-heading>
+            <div class="wrapper-md">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th>序號</th>
+                                <th>名稱</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td ng-bind="$index+1">1</td>
+                                <td>睦月·漫畫</td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon"><i
+                                            class="fa fa-laptop"></i>|查看詳細
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon"><i
+                                            class="fa fa-edit"></i>|編輯
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon"><i
+                                            class="fa fa-unlock-alt"></i>|刪除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row ">
+                        <div class="col-sm-12">
+                            <tm-pagination conf="paginationConf" class="paginationGid"></tm-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab>
+            <tab-heading>
+                English
+            </tab-heading>
+            <div class="wrapper-md">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th>Number</th>
+                                <th>Name</th>
+                                <th>Operation</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td ng-bind="$index+1">1</td>
+                                <td>MuYue·Cartoon</td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon"><i
+                                            class="fa fa-laptop"></i>|View
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon"><i
+                                            class="fa fa-edit"></i>|Editor
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon"><i
+                                            class="fa fa-unlock-alt"></i>|Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row ">
+                        <div class="col-sm-12">
+                            <tm-pagination conf="paginationConf" class="paginationGid"></tm-pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+</div>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="row wrapper-sm">
+
+        </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content text-center p-md">
+                    <form class="form-horizontal" method="get">
+                        <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
+                            <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                            <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的简介"></textarea></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                            <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的概要"></textarea></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-1 control-label">链接:</label>
+                            <div class="col-sm-11"><input type="text" class="form-control" value="请输入外部链接"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">图片:</label>
+                            <div class="upload-div col-sm-6"  >
+                                <div class="upload-buttons">
+                                    <div id="editArea">
+                                        <fieldset>
+                                            <div class="preview">
+                                                <img ngf-src="!files[0].$error && files[0]">
+                                                <!--<img ngf-src="item.type">-->
+                                                <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
+                                                <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
+                                            </div>
+                                            <div class="up-buttons">
+                                                <div ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
+                                                     ngf-model-options="modelOptionsObj"
+                                                     ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
+                                                     ng-disabled="disabled" ngf-capture="capture"
+                                                     ngf-drag-over-class="dragOverClassObj"
+                                                     ngf-validate="validateObj"
+                                                     ngf-resize="resizeObj"
+                                                     ngf-resize-if="resizeIfFn($file, $width, $height)"
+                                                     ngf-dimensions="dimensionsFn($file, $width, $height)"
+                                                     ngf-duration="durationFn($file, $duration)"
+                                                     ngf-keep="keepDistinct ? 'distinct' : keep"
+                                                     ngf-fix-orientation="orientation"
+                                                     ngf-max-files="maxFiles"
+                                                     ngf-ignore-invalid="ignoreInvalid"
+                                                     ngf-run-all-validations="runAllValidations"
+                                                     ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">图片上传
+                                                    <span ng-show="dropAvailable"></span>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>

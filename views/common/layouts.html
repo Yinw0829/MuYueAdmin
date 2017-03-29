@@ -1,0 +1,307 @@
+<!-- Wrapper-->
+<div id="wrapper" >
+
+    <!-- Navigation -->
+    <div ng-include="'views/common/navigation.html'"></div>
+
+    <!-- Page wraper -->
+    <!-- ng-class with current state name give you the ability to extended customization your view -->
+    <div id="page-wrapper" class="gray-bg {{$state.current.name}}">
+
+        <!-- Page wrapper -->
+        <div ng-include="'views/common/topnavbar.html'"></div>
+
+        <!-- Main view  -->
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>首页管理</h2>
+                <!--<ol class="breadcrumb">-->
+                <!--<li>-->
+                <!--<a href="index.html">Home</a>-->
+                <!--</li>-->
+                <!--<li class="active">-->
+                <!--<strong>Layouts</strong>-->
+                <!--</li>-->
+                <!--</ol>-->
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+        <div class="wrapper-md">
+            <tabset class="tab-container">
+                <tab>
+                    <tab-heading>
+                        中文简体
+                    </tab-heading>
+                    <div class="ibox float-e-margins table m-b-none">
+                        <div class="ibox-content text-center p-md">
+                            <form class="form-horizontal" method="get">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">图片:</label>
+                                    <div class="upload-div col-sm-6">
+                                        <div class="upload-buttons">
+                                            <div id="editArea">
+                                                <fieldset>
+                                                    <!--<legend>请上传图片：</legend>-->
+                                                    <div class="preview">
+                                                        <img ngf-src="!files[0].$error && files[0]">
+                                                        <!--<img ngf-src="item.type">-->
+                                                        <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
+                                                        <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
+                                                    </div>
+                                                    <div class="up-buttons">
+                                                        <div ngf-select ngf-drop ng-model="files"
+                                                             ngf-model-invalid="invalidFiles"
+                                                             ngf-model-options="modelOptionsObj"
+                                                             ngf-multiple="true"
+                                                             ngf-pattern="pattern"
+                                                             ngf-accept="acceptSelect"
+                                                             ng-disabled="disabled"
+                                                             ngf-capture="capture"
+                                                             ngf-drag-over-class="dragOverClassObj"
+                                                             ngf-validate="validateObj"
+                                                             ngf-resize="resizeObj"
+                                                             ngf-resize-if="resizeIfFn($file, $width, $height)"
+                                                             ngf-dimensions="dimensionsFn($file, $width, $height)"
+                                                             ngf-duration="durationFn($file, $duration)"
+                                                             ngf-keep="keepDistinct ? 'distinct' : keep"
+                                                             ngf-fix-orientation="orientation"
+                                                             ngf-max-files="maxFiles"
+                                                             ngf-ignore-invalid="ignoreInvalid"
+                                                             ngf-run-all-validations="runAllValidations"
+                                                             ngf-allow-dir="allowDir"
+                                                             class="drop-box"
+                                                             ngf-drop-available="dropAvailable">图片上传
+                                                            <span ng-show="dropAvailable"></span>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div style="clear:both" class="err"
+                                             ng-show="errorMsg != null">{{errorMsg}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">简介:</label>
+                                    <div class="col-sm-8"><textarea type="text" class="form-control"
+                                                                    value=""></textarea></div>
+                                </div>
+                                <div class="form-group"><label
+                                        class="col-sm-1 control-label">链接：</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control small" ng-model="mstep"
+                                                ng-options="opt for opt in options.mstep"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">序号：</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" name="count" ng-required="true"
+                                               class="form-control input-sm w-sm inline m-r"
+                                               autocomplete="off" min="1" max="3"
+                                               ng-model="count" class="form-control">
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.max">
+                                            序号不能超过3
+                                        </div>
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.min">
+                                            序号不能小于1
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                       中文繁体
+                    </tab-heading>
+                    <div class="ibox float-e-margins table m-b-none">
+                        <div class="ibox-content text-center p-md">
+                            <form class="form-horizontal" method="get">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">圖片:</label>
+                                    <div class="upload-div col-sm-6">
+                                        <div class="upload-buttons">
+                                            <div id="editArea2">
+                                                <fieldset>
+                                                    <!--<legend>请上传图片：</legend>-->
+                                                    <div class="preview">
+                                                        <img ngf-src="!files[0].$error && files[0]">
+                                                        <!--<img ngf-src="item.type">-->
+                                                        <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
+                                                        <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
+                                                    </div>
+                                                    <div class="up-buttons">
+                                                        <div ngf-select ngf-drop ng-model="files"
+                                                             ngf-model-invalid="invalidFiles"
+                                                             ngf-model-options="modelOptionsObj"
+                                                             ngf-multiple="true"
+                                                             ngf-pattern="pattern"
+                                                             ngf-accept="acceptSelect"
+                                                             ng-disabled="disabled"
+                                                             ngf-capture="capture"
+                                                             ngf-drag-over-class="dragOverClassObj"
+                                                             ngf-validate="validateObj"
+                                                             ngf-resize="resizeObj"
+                                                             ngf-resize-if="resizeIfFn($file, $width, $height)"
+                                                             ngf-dimensions="dimensionsFn($file, $width, $height)"
+                                                             ngf-duration="durationFn($file, $duration)"
+                                                             ngf-keep="keepDistinct ? 'distinct' : keep"
+                                                             ngf-fix-orientation="orientation"
+                                                             ngf-max-files="maxFiles"
+                                                             ngf-ignore-invalid="ignoreInvalid"
+                                                             ngf-run-all-validations="runAllValidations"
+                                                             ngf-allow-dir="allowDir"
+                                                             class="drop-box"
+                                                             ngf-drop-available="dropAvailable">圖片上傳
+                                                            <span ng-show="dropAvailable"></span>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div style="clear:both" class="err"
+                                             ng-show="errorMsg != null">{{errorMsg}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">簡介:</label>
+                                    <div class="col-sm-8"><textarea type="text" class="form-control"
+                                                                    value=""></textarea></div>
+                                </div>
+                                <div class="form-group"><label
+                                        class="col-sm-1 control-label">鏈接：</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control small" ng-model="mstep"
+                                                ng-options="opt for opt in options.mstep"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">序號：</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" name="count" ng-required="true"
+                                               class="form-control input-sm w-sm inline m-r"
+                                               autocomplete="off" min="1" max="3"
+                                               ng-model="count" class="form-control">
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.max">
+                                            序号不能超过3
+                                        </div>
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.min">
+                                            序号不能小于1
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        English
+                    </tab-heading>
+                    <div class="ibox float-e-margins table m-b-none">
+                        <div class="ibox-content text-center p-md">
+                            <form class="form-horizontal" method="get">
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">Photo:</label>
+                                    <div class="upload-div col-sm-6">
+                                        <div class="upload-buttons">
+                                            <div id="editArea3">
+                                                <fieldset>
+                                                    <!--<legend>请上传图片：</legend>-->
+                                                    <div class="preview">
+                                                        <img ngf-src="!files[0].$error && files[0]">
+                                                        <!--<img ngf-src="item.type">-->
+                                                        <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
+                                                        <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
+                                                    </div>
+                                                    <div class="up-buttons">
+                                                        <div ngf-select ngf-drop ng-model="files"
+                                                             ngf-model-invalid="invalidFiles"
+                                                             ngf-model-options="modelOptionsObj"
+                                                             ngf-multiple="true"
+                                                             ngf-pattern="pattern"
+                                                             ngf-accept="acceptSelect"
+                                                             ng-disabled="disabled"
+                                                             ngf-capture="capture"
+                                                             ngf-drag-over-class="dragOverClassObj"
+                                                             ngf-validate="validateObj"
+                                                             ngf-resize="resizeObj"
+                                                             ngf-resize-if="resizeIfFn($file, $width, $height)"
+                                                             ngf-dimensions="dimensionsFn($file, $width, $height)"
+                                                             ngf-duration="durationFn($file, $duration)"
+                                                             ngf-keep="keepDistinct ? 'distinct' : keep"
+                                                             ngf-fix-orientation="orientation"
+                                                             ngf-max-files="maxFiles"
+                                                             ngf-ignore-invalid="ignoreInvalid"
+                                                             ngf-run-all-validations="runAllValidations"
+                                                             ngf-allow-dir="allowDir"
+                                                             class="drop-box"
+                                                             ngf-drop-available="dropAvailable">Upload Photo
+                                                            <span ng-show="dropAvailable"></span>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div style="clear:both" class="err"
+                                             ng-show="errorMsg != null">{{errorMsg}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">Intro:</label>
+                                    <div class="col-sm-8"><textarea type="text" class="form-control"
+                                                                    value=""></textarea></div>
+                                </div>
+                                <div class="form-group"><label
+                                        class="col-sm-1 control-label">Chaining：</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control small" ng-model="mstep"
+                                                ng-options="opt for opt in options.mstep"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-1 control-label">Number：</label>
+                                    <div class="col-sm-5">
+                                        <input type="number" name="count" ng-required="true"
+                                               class="form-control input-sm w-sm inline m-r"
+                                               autocomplete="off" min="1" max="3"
+                                               ng-model="count" class="form-control">
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.max">
+                                            序号不能超过3
+                                        </div>
+                                        <div class="alert alert-danger help-block"
+                                             ng-show="myForm.count.$error.min">
+                                            序号不能小于1
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+
+
+        <!-- Footer -->
+        <div ng-include="'views/common/footer.html'"></div>
+
+    </div>
+    <!-- End page wrapper-->
+
+</div>
+<!-- End wrapper-->
