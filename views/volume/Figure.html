@@ -23,7 +23,7 @@
             <tab-heading>
                 中文简体
             </tab-heading>
-            <div class="ibox-content text-center p-md">
+            <div class="ibox-content text-left p-md">
                 <form class="form-horizontal" method="get">
                     <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
                         <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
@@ -34,24 +34,78 @@
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">人物:</label>
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-2">
+                            <button class="btn-sm btn-outline btn-primary text-right">新增人物</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-11">
+                                <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                                       data-page-size="15">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>名称</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td ng-bind="$index+1">1</td>
+                                        <td>睦月·小说</td>
+                                        <td>
+                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick()"><i
+                                                    class="fa fa-laptop"></i>|查看详细
+                                            </button>
+                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                                    class="fa fa-edit"></i>|编辑
+                                            </button>
+                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                                    class="fa fa-unlock-alt"></i>|删除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div class="col-lg-11">
                             <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
                                     accept="image/*" ngf-max-height="10000" ngf-max-size="1MB">
                                 上传图片
                             </button>
                             <br><br>
-                            <img class="figure" ng-repeat="f in files" ngf-src="f">
+                            <ul class="list-inline">
+                                <li ng-repeat="f in files">
+                                    <a href="" title="Image from Unsplash" data-gallery=""><img
+                                            ngf-src="f"></a>
+                                </li>
+                            </ul>
+                            <div id="blueimp-gallery" class="blueimp-gallery">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
                             <!--//进度条-->
                             <div ng-repeat="f in files">{{f.$errorParam}}
-                                <span class="progress1" style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;" ng-show="f.progress >= 0">
+                                <span class="progress1"
+                                      style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
+                                      ng-show="f.progress >= 0">
                                        <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
                                     </span>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary">保存</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -80,7 +134,9 @@
                             <img class="figure" ng-repeat="f in files1" ngf-src="f">
                             <!--//进度条-->
                             <div ng-repeat="f in files1">{{f.$errorParam}}
-                                <span class="progress1" style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;" ng-show="f.progress >= 0">
+                                <span class="progress1"
+                                      style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
+                                      ng-show="f.progress >= 0">
                                        <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
                                     </span>
                             </div>
@@ -88,7 +144,9 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-3"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary">保存</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -117,7 +175,9 @@
                             <img class="figure" ng-repeat="f in files1" ngf-src="f">
                             <!--//进度条-->
                             <div ng-repeat="f in files1">{{f.$errorParam}}
-                                <span class="progress1" style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;" ng-show="f.progress >= 0">
+                                <span class="progress1"
+                                      style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
+                                      ng-show="f.progress >= 0">
                                        <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
                                     </span>
                             </div>
@@ -125,7 +185,9 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-3"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary">保存</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -133,14 +195,14 @@
     </tabset>
 </div>
 <!--<style>-->
-    <!--/* Local style for demo purpose */-->
+<!--/* Local style for demo purpose */-->
 
-    <!--.lightBoxGallery {-->
-        <!--text-align: center;-->
-    <!--}-->
+<!--.lightBoxGallery {-->
+<!--text-align: center;-->
+<!--}-->
 
-    <!--.lightBoxGallery img {-->
-        <!--margin: 5px;-->
-    <!--}-->
+<!--.lightBoxGallery img {-->
+<!--margin: 5px;-->
+<!--}-->
 
 <!--</style>-->

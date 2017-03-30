@@ -58,20 +58,20 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
             url: "/Figure/:volumeId",
             templateUrl: "views/volume/Figure.html",
             params: {"volumeId": null},
-            controller: "figureCtrl"
-            // resolve: {
-            //     loadPlugin: function ($ocLazyLoad) {
-            //         return $ocLazyLoad.load([
-            //             {
-            //                 files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
-            //                     'css/plugins/blueimp/css/blueimp-gallery.min.css',
-            //                     'js/Upload/ng-file-upload-shim.js',
-            //                     'js/Upload/ng-file-upload.js'
-            //                 ]
-            //             }
-            //         ]);
-            //     }
-            // }
+            controller: "figureCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+                            ]
+                        }
+                    ]);
+                }
+            }
         })
         //卷-CG图例
         .state('volume.Legend', {

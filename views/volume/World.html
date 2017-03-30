@@ -23,17 +23,23 @@
             <tab-heading>
                 中文简体
             </tab-heading>
-            <div class="ibox-content text-center p-md">
+            <div class="ibox-content p-md">
                 <form class="form-horizontal" method="get">
                     <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control"  ng-hide="queen">
+                            <span class="text-left" ng-show="queen">代号红皇后·小说</span>
+                        </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的简介"></textarea>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control" ng-hide="queen"> </textarea>
+                            <span class="text-left" ng-show="queen">代号红皇后·简介代号红皇后·简介代号红皇后·简介代号红皇后·简介代号红皇后·简介</span>
                         </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的概要"></textarea>
+                        <div class="col-sm-11"><textarea type="text" class="form-control" ng-hide="queen"></textarea>
+                            <span class="text-left" ng-show="queen">代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,8 +83,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="preserve()" ng-hide="queen">保存</button>
+                            <button class="btn-lg btn-outline btn-primary" ng-click="preserve()" ng-show="queen">编辑</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -87,7 +96,7 @@
             <tab-heading>
                 中文繁体
             </tab-heading>
-            <div class="ibox-content text-center p-md">
+            <div class="ibox-content p-md">
                 <form class="form-horizontal" method="get">
                     <div class="form-group"><label class="col-sm-1 control-label">名稱:</label>
                         <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
@@ -107,13 +116,13 @@
                                 <div id="editArea1">
                                     <fieldset>
                                         <div class="preview">
-                                            <img ngf-src="!files[0].$error && files[0]">
+                                            <img ngf-src="!files1[0].$error && files1[0]">
                                             <!--<img ngf-src="item.type">-->
                                             <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
                                             <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
                                         </div>
                                         <div class="up-buttons">
-                                            <div ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
+                                            <div ngf-select ngf-drop ng-model="files1" ngf-model-invalid="invalidFiles"
                                                  ngf-model-options="modelOptionsObj"
                                                  ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
                                                  ng-disabled="disabled" ngf-capture="capture"
@@ -141,7 +150,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3"></div>
+                        <div class="col-lg-5"></div>
                         <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
                     </div>
                 </form>
@@ -171,13 +180,13 @@
                                 <div id="editArea2">
                                     <fieldset>
                                         <div class="preview">
-                                            <img ngf-src="!files[0].$error && files[0]">
+                                            <img ngf-src="!files2[0].$error && files2[0]">
                                             <!--<img ngf-src="item.type">-->
                                             <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
                                             <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
                                         </div>
                                         <div class="up-buttons">
-                                            <div ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
+                                            <div ngf-select ngf-drop ng-model="files2" ngf-model-invalid="invalidFiles"
                                                  ngf-model-options="modelOptionsObj"
                                                  ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
                                                  ng-disabled="disabled" ngf-capture="capture"
