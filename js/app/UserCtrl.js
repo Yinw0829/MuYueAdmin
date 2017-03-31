@@ -1,14 +1,17 @@
 angular.module('userCtrl', [])
 // 首页
     .controller('indexCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource', function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource) {
-        // $scope.url = MY.API + '';
-        // var getUser = $resource(
-        // $scope.url + 'type',
-        // {
-        //     id:'@id'
-        // },{
-        //
-        // })
+        $scope.url = MY.API + 'caricature/';
+         var getUser = $resource(
+         $scope.url + 'type',
+         {
+            id:'@id'
+         },{
+
+         })
+        getUser.get({type:'list'},{},function (data) {
+            $scope.userList = data.rows;
+        });
         // 新增
         $scope.indecCtrl = 'indexCtrl';
         $scope.newLay = function () {
@@ -63,7 +66,7 @@ angular.module('userCtrl', [])
     .controller('homeCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
         var first = $resource($scope.url + 'add');
         $scope.first = function (id) {
-            first.save({name: name, id: id}, function () {
+            first.save({name: name, id: id,sort:sort,description:description}, function () {
                 $modalInstance.close();
             })
         }
