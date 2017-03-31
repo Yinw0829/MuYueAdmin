@@ -1,17 +1,17 @@
 <div class="ibox float-e-margins table m-b-none">
-    <div class="modal-header h3">
-        新增首页
+    <div class="modal-header h4">
+        {{newadd}}
     </div>
     <div class="text-center p-md">
         <form name="myForm" class="form-horizontal" method="get">
             <div class="form-group">
-                <label class="col-sm-1 control-label">语言:</label>
-                <div class="col-sm-8"><select class="form-control w-lg inline " ng-model="interviewAddressId"
+                <label class="col-sm-2 control-label">语言:</label>
+                <div class="col-sm-8"><select class="form-control w-lg inline " ng-required="true" ng-model="interviewAddressId"
                                               ng-options="x.id as x.address for x in inter">
                 </select></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label" ng-model="img">图片:</label>
+                <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImg}}" ng-model="img">图片:</label>
                 <div class="upload-div col-sm-6"  >
                     <div class="upload-buttons">
                         <div id="editArea">
@@ -23,7 +23,7 @@
                                     <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
                                 </div>
                                 <div class="up-buttons">
-                                    <button ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
+                                    <button ngf-select ngf-drop ng-model="files" name="files" ngf-model-invalid="invalidFiles"
                                          ngf-model-options="modelOptionsObj"
                                          ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
                                          ng-disabled="disabled" ngf-capture="capture"
@@ -50,34 +50,37 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">简介:</label>
-                <div class="col-sm-8"><textarea type="text" class="form-control" value="" ng-model="description"></textarea></div>
+                <label class="col-sm-2 control-label">简介:</label>
+                <div class="col-sm-8"><textarea type="text" class="form-control" ng-required="true" value="" ng-model="description"></textarea></div>
             </div>
             <div class="form-group"><label
-                    class="col-sm-1 control-label">链接：</label>
+                    class="col-sm-2 control-label">链接：</label>
                 <div class="col-sm-5">
-                    <select class="form-control small" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+                    <select class="form-control small" ng-model="catenate" ng-required="true" ng-options="opt for opt in options.mstep"></select>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">序号：</label>
+                <label class="col-sm-2 control-label">序号：</label>
                 <div class="col-sm-5">
                     <input type="number" name="count" ng-model="sort" ng-required="true"
-                           class="form-control input-sm w-sm inline m-r" ng-required="true" autocomplete="off" min="1" max="5" ng-model="count" class="form-control">
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" max="5" ng-model="count" class="form-control">
                     <div class="alert alert-danger help-block" ng-show="myForm.count.$error.max">
                         序号不能超过5
                     </div>
-                    <div class="alert alert-danger help-block"
-                         ng-show="myForm.count.$error.min">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
                         序号不能小于1
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">禁/启：</label>
+                <div class="col-sm-2"><button class="btn  btn-sm btn-info btn-addon"><i class="fa  fa-unlock"></i>启用</button></div>
             </div>
         </form>
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-5">
-                <button class="btn-lg btn-primary btn-outline">保存</button>
+                <button class="btn-lg btn-primary btn-outline text-left" ng-click="preserve(y)">保存</button>
             </div>
         </div>
     </div>

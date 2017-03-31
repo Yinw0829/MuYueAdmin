@@ -1,6 +1,6 @@
 angular.module('userCtrl', [])
 // 首页
-    .controller('indexCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource', function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource) {
+    .controller('indexCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource','MY', function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource,MY) {
         $scope.url = MY.API + 'caricature/';
          var getUser = $resource(
          $scope.url + 'type',
@@ -8,13 +8,14 @@ angular.module('userCtrl', [])
             id:'@id'
          },{
 
-         })
+         });
         getUser.get({type:'list'},{},function (data) {
             $scope.userList = data.rows;
         });
         // 新增
         $scope.indecCtrl = 'indexCtrl';
         $scope.newLay = function () {
+            $scope.newadd = "新增首页";
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/newLayout.html',
                 controller: 'homeCtrl',
@@ -23,18 +24,26 @@ angular.module('userCtrl', [])
             });
         };
         // 查看
-        $scope.seeClick = function () {
-            //需地址穿ID
+        $scope.seeClick = function (id) {
+            $scope.see = "首页详细";
+            getUser.get({type:'load'},{id:id},function (data) {
+                // $scope.item = data.??
+            });
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/newSeeLayout.html',
                 controller: 'seeCtrl',
                 scope: $scope,
-                size: 'lg'
+                size: 'lg',
+                reslove:{
+                    items:function () {
+                        return $scope.item;
+                    }
+                }
             });
-
         };
         // 编辑
         $scope.compile = function () {
+            $scope.redact1 = "首页编辑";
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/redact.html',
                 controller: 'redactCtrl',
@@ -49,6 +58,7 @@ angular.module('userCtrl', [])
         };
         // 删除
         $scope.delClick = function (id) {
+            $scope.cancel1 = "首页删除";
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/delClick.html',
                 controller: 'delCtrl',
@@ -64,9 +74,24 @@ angular.module('userCtrl', [])
     }])
     //首页新增
     .controller('homeCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
-        var first = $resource($scope.url + 'add');
-        $scope.first = function (id) {
-            first.save({name: name, id: id,sort:sort,description:description}, function () {
+        // var first = $resource($scope.url + 'add');
+        $scope.uploadImg = '';
+        $scope.preserve = function () {
+            $scope.first($scope.files)
+        };
+        $scope.first = function (files) {
+            $scope.fileInfo = files;
+            first.save({
+                method:'POST',
+                url:'add',
+                data:{
+                    imgFile:files,
+                    name:$scope.name,
+                    sort:$scope.sort,
+                    description:$scope.description,
+                    catenate:$scope.catenate
+                }
+            }, function () {
                 $modalInstance.close();
             })
         }
@@ -85,13 +110,13 @@ angular.module('userCtrl', [])
     }])
     // 查看
     .controller('seeCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
-        $scope.ok = function (userId) {
+        $scope.ok = function (Id) {
             $modalInstance.close(items)
         }
     }])
     // 编辑
     .controller('redactCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
-        var redact = $resource($scope.url + 'type/modify');
+        var redact = $resource($scope.url + 'modify');
         $scope.redact = function (id) {
             redact.save(
                 {
@@ -190,15 +215,42 @@ angular.module('userCtrl', [])
         // $scope.on('dataList.Service', function () {
         //     $scope.list = dataListService.successList
         // });
+        // 新增
         $scope.newCata = function () {
+            $scope.name = '新增目录';
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/newlyCatalog.html',
                 controller: 'newLayCtrl',
                 scope: $scope,
                 size: 'lg'
             });
+        };
+        // 编辑
+        $scope.redact = function () {
+            $scope.name = '编辑内容';
+            var modalInstance = $modal.open({
+                templateUrl:'views/model/newlyCatalog.html',
+                controller: 'checkLayCtrl',
+                scope: $scope,
+                size: 'lg'
+            })
+        };
+        // 删除
+        $scope.delClick = function (id) {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/model/delClick.html',
+                controller: 'delCtrl',
+                scope: $scope,
+                size: 'md',
+                resolve: {
+                    items: function () {
+                        return $scope.item;
+                    }
+                }
+            })
         }
     }])
+
 
     .controller('newLayCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
         var first = $resource($scope.url + 'add');
@@ -208,3 +260,11 @@ angular.module('userCtrl', [])
             })
         }
     }])
+    .controller('checkLayCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
+        var first = $resource($scope.url + 'add');
+        $scope.first = function (id) {
+            first.save({name: name, id: id}, function () {
+                $modalInstance.close();
+            })
+        }
+    }]);
