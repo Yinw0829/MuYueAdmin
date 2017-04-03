@@ -3,5 +3,5 @@
  */
 angular.module('constantService',[]).
     constant("MY",{
-        "API":"http://121.40.226.241:8080/"
+        "API":"http://121.40.226.241:8080/muyue/"
 });

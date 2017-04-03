@@ -30,7 +30,7 @@
             </li>
             <!--有了数据在li这里ng-repeat就可以了-->
             <li ng-class="{active: $state.includes('volume')}">
-                <a href=""><i class="fa fa-sitemap"></i> <span class="nav-label">推荐卷</span><span
+                <a href><i class="fa fa-sitemap"></i> <span class="nav-label">推荐卷</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -54,7 +54,7 @@
                 </ul>
             </li>
             <li ng-class="{active: $state.includes('volume')}">
-                <a href=""><i class="fa fa-sitemap"></i> <span class="nav-label">其他卷</span><span
+                <a href><i class="fa fa-sitemap"></i> <span class="nav-label">其他卷</span><span
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">目录</a>
+                        <a ui-sref="volume.Catalog({volumeId:2})">目录</a>
                     </li>
                 </ul>
             </li>

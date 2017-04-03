@@ -81,8 +81,8 @@
                                data-page-size="15">
                             <thead>
                             <tr>
-                                <th>序號</th>
-                                <th>名稱</th>
+                                <th>序号</th>
+                                <th>名称</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -91,13 +91,13 @@
                                 <td ng-bind="$index+1">1</td>
                                 <td>睦月·漫畫</td>
                                 <td>
-                                    <button class="btn  btn-sm btn-success btn-addon"><i
-                                            class="fa fa-laptop"></i>|查看詳細
+                                    <button class="btn  btn-sm btn-success btn-addon" ng-click="check()"><i
+                                            class="fa fa-laptop"></i>|查看详细
                                     </button>
                                     <button class="btn  btn-sm btn-info btn-addon" ng-click="redact()"><i
-                                            class="fa fa-edit"></i>|編輯
+                                            class="fa fa-edit"></i>|编辑
                                     </button>
-                                    <button class="btn  btn-sm btn-danger btn-addon"><i
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
                                             class="fa fa-unlock-alt"></i>|刪除
                                     </button>
                                 </td>
@@ -126,9 +126,9 @@
                                data-page-size="15">
                             <thead>
                             <tr>
-                                <th>Number</th>
-                                <th>Name</th>
-                                <th>Operation</th>
+                                <th>序号</th>
+                                <th>名称</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -136,14 +136,14 @@
                                 <td ng-bind="$index+1">1</td>
                                 <td>MuYue·Cartoon</td>
                                 <td>
-                                    <button class="btn  btn-sm btn-success btn-addon"><i
-                                            class="fa fa-laptop"></i>|View
+                                    <button class="btn  btn-sm btn-success btn-addon" ng-click="check()"><i
+                                            class="fa fa-laptop"></i>|查看详细
                                     </button>
                                     <button class="btn  btn-sm btn-info btn-addon" ng-click="redact()"><i
-                                            class="fa fa-edit"></i>|Editor
+                                            class="fa fa-edit"></i>|编辑
                                     </button>
-                                    <button class="btn  btn-sm btn-danger btn-addon"><i
-                                            class="fa fa-unlock-alt"></i>|Delete
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                            class="fa fa-unlock-alt"></i>|删除
                                     </button>
                                 </td>
                             </tr>

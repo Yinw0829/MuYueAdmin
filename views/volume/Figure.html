@@ -36,11 +36,69 @@
                         <label class="col-sm-1 control-label">人物:</label>
                         <div class="col-sm-9"></div>
                         <div class="col-sm-2">
-                            <button class="btn-sm btn-outline btn-primary text-right">新增人物</button>
+                            <button class="btn-sm btn-outline btn-primary text-right" ng-click="newFigure()">新增人物</button>
                         </div>
                         <div class="row">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-11">
+                                <div class="wrapper-md">
+                                    <div class="panel panel-default">
+                                        <div class="table-responsive">
+                                            <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                                                   data-page-size="15">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>头像</th>
+                                                    <th>名字</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td ng-bind="$index+1">1</td>
+                                                    <td><img src="../../../MuYueAdmin/img/a1.jpg" style="width: 50px;height: 50px;"></td>
+                                                    <td>柯南</td>
+                                                    <td>
+                                                        <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                                                class="fa fa-edit"></i>|编辑
+                                                        </button>
+                                                        <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                                                class="fa fa-unlock-alt"></i>|删除
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="$index+1">1</td>
+                                                    <td><img src="../../../MuYueAdmin/img/a1.jpg" style="width: 50px;height: 50px;"></td>
+                                                    <td>柯南</td>
+                                                    <td>
+                                                        <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                                                class="fa fa-edit"></i>|编辑
+                                                        </button>
+                                                        <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                                                class="fa fa-unlock-alt"></i>|删除
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td ng-bind="$index+1">1</td>
+                                                    <td><img src="../../../MuYueAdmin/img/a1.jpg" style="width: 50px;height: 50px;"></td>
+                                                    <td>柯南</td>
+                                                    <td>
+                                                        <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                                                class="fa fa-edit"></i>|编辑
+                                                        </button>
+                                                        <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                                                class="fa fa-unlock-alt"></i>|删除
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-11">
@@ -52,7 +110,7 @@
                             <ul class="list-inline">
                                 <li ng-repeat="f in files">
                                     <a href="" title="Image from Unsplash" data-gallery=""><img
-                                            ngf-src="f"></a>
+                                            ngf-src="f" class="figure"></a>
                                 </li>
                             </ul>
                             <div id="blueimp-gallery" class="blueimp-gallery">
@@ -65,7 +123,7 @@
                                 <ol class="indicator"></ol>
                             </div>
                             <!--//进度条-->
-                            <div ng-repeat="f in files">{{f.$errorParam}}
+                            <div ng-repeat="f in files" >{{f.$errorParam}}
                                 <span class="progress1"
                                       style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
                                       ng-show="f.progress >= 0">
@@ -89,10 +147,10 @@
             </tab-heading>
             <div class="ibox-content text-center p-md">
                 <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名稱:</label>
+                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
                         <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
                     </div>
-                    <div class="form-group"><label class="col-sm-1 control-label">簡介:</label>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
                         <div class="col-sm-11"><textarea type="text" class="form-control"
                                                          value="请输入世界观的简介"></textarea></div>
                     </div>
@@ -130,15 +188,15 @@
             </tab-heading>
             <div class="ibox-content text-center p-md">
                 <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">Name:</label>
+                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
                         <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
                     </div>
-                    <div class="form-group"><label class="col-sm-1 control-label">Intro:</label>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
                         <div class="col-sm-11"><textarea type="text" class="form-control"
                                                          value="请输入世界观的简介"></textarea></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">Figure:</label>
+                        <label class="col-sm-1 control-label">人物:</label>
                         <div class="col-lg-11">
                             <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
                                     accept="image/*" ngf-max-height="10000" ngf-max-size="1MB">

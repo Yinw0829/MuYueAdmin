@@ -3,7 +3,7 @@ angular.module('userCtrl', [])
     .controller('indexCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource','MY', function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource,MY) {
         $scope.url = MY.API + 'caricature/';
          var getUser = $resource(
-         $scope.url + 'type',
+         $scope.url + ':type',
          {
             id:'@id'
          },{
@@ -15,6 +15,7 @@ angular.module('userCtrl', [])
         // 新增
         $scope.indecCtrl = 'indexCtrl';
         $scope.newLay = function () {
+            alert(1);
             $scope.newadd = "新增首页";
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/newLayout.html',
@@ -27,7 +28,7 @@ angular.module('userCtrl', [])
         $scope.seeClick = function (id) {
             $scope.see = "首页详细";
             getUser.get({type:'load'},{id:id},function (data) {
-                // $scope.item = data.??
+                $scope.item = data.rows;
             });
             var modalInstance = $modal.open({
                 templateUrl: 'views/model/newSeeLayout.html',
@@ -73,28 +74,48 @@ angular.module('userCtrl', [])
         }
     }])
     //首页新增
-    .controller('homeCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
-        // var first = $resource($scope.url + 'add');
-        $scope.uploadImg = '';
+    .controller('homeCtrl', ['$scope', '$timeout', 'Upload', 'dataListService', '$resource','$modalInstance',  function ($scope, $timeout, Upload, dataListService, $resource,$modalInstance) {
+        var Upload = $resource(
+            $scope.url + 'add',
+            {},
+            {newAdd:{method:'POST',isArray:false}});
         $scope.preserve = function () {
-            $scope.first($scope.files)
+            $scope.load($scope.files)
         };
-        $scope.first = function (files) {
-            $scope.fileInfo = files;
-            first.save({
-                method:'POST',
-                url:'add',
-                data:{
-                    imgFile:files,
-                    name:$scope.name,
-                    sort:$scope.sort,
-                    description:$scope.description,
-                    catenate:$scope.catenate
-                }
-            }, function () {
+        $scope.load = function (files) {
+            Upload.save({title:"这是标题",
+                imgFile:"",
+                name:"",
+                sort:"",
+                description:"",
+                catenate:""},function () {
                 $modalInstance.close();
             })
         }
+
+        // var Upload = $resource($scope.url + 'add');
+        // $scope.uploadImg = '';
+        // $scope.preserve = function () {
+        //     $scope.load($scope.files)
+        // };
+        // $scope.load = function (files) {
+        //     $scope.fileInfo = files;
+        //     console.log(files);
+        //     Upload.load({
+        //         // method:'POST',
+        //         // url:'add',
+        //         data:{
+        //             title:"这是标题",
+        //             imgFile:"",
+        //             name:"",
+        //             sort:"",
+        //             description:"",
+        //             catenate:""
+        //         }
+        //     }, function () {
+        //         $modalInstance.close();
+        //     })
+        // }
     }])
     // 删除
     .controller('delCtrl', ['$scope', '$modalInstance', 'items', '$resource', function ($scope, $modalInstance, items, $resource) {
@@ -127,7 +148,6 @@ angular.module('userCtrl', [])
                 })
         };
     }])
-
 
 
 
@@ -175,8 +195,18 @@ angular.module('userCtrl', [])
 
     }])
     //    人物
-    .controller('figureCtrl', ['$scope', '$stateParams', 'Upload', '$timeout', function ($scope, $stateParams, Upload, $timeout) {
+    .controller('figureCtrl', ['$scope', '$modal', '$http', '$timeout', '$compile', 'Upload', 'dataListService', '$resource','MY',function ($scope, $modal, $http, $timeout, $compile, Upload, dataListService, $resource,MY) {
         $scope.user = '人物';
+        $scope.newFigure = function () {
+            alert(1);
+            $scope.newadd = "新增首页";
+            var modalInstance = $modal.open({
+                templateUrl: 'views/model/newFigure.html',
+                controller: 'homeCtrl',
+                scope: $scope,
+                size: 'lg'
+            });
+        };
         $scope.uploadFiles = function (files, errFiles) {
             $scope.files = files;
             console.log(files);
@@ -204,6 +234,33 @@ angular.module('userCtrl', [])
             });
         }
     }])
+    .controller('figurewCtrl', ['$scope', '$modalInstance', '$resource', function ($scope, $modalInstance, $resource) {
+        var first = $resource($scope.url + 'add');
+        $scope.uploadImg = '';
+        $scope.preserve = function () {
+            $scope.first($scope.files)
+        };
+        $scope.first = function (files) {
+            $scope.fileInfo = files;
+            first.save({
+                method:'POST',
+                url:'add',
+                data:{
+                    imgFile:files,
+                    name:$scope.name,
+                    sort:$scope.sort,
+                    description:$scope.description,
+                    catenate:$scope.catenate
+                }
+            }, function () {
+                $modalInstance.close();
+            })
+        }
+    }])
+
+
+
+
     //    CG图例
     .controller('legendCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
         $scope.user = 'CG图例'
