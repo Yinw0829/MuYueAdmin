@@ -1,7 +1,7 @@
 angular.module('appService', [])
 //相关的地址+ID的请求服务的封装，应用场景有删除、启用、禁用，
     .factory('postIdService', ['$rootScope', '$resource', 'MY', function ($rootScope, $resource, MY) {
-        var apiUrl = MY.API;
+        var apiUrl = MY.url;
         $rootScope.postIdTip = new Object();
         return {
             postIdRequest: function (address, recruitId) {

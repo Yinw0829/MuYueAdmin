@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-12">
-        <h2>{{user}}</h2>
+        <h2>{{user}}{{index}}</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">首页</a>
@@ -19,41 +19,96 @@
         <div class="ibox-content text-left p-md">
             <form class="form-horizontal" method="get">
                 <div class="form-group"><label class="col-sm-1 control-label">图片:</label>
-                    <div class="col-sm-11">
-                        <a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/1s.jpg"></a>
-                        <a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/2s.jpg"></a>
-                        <a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/3s.jpg"></a>
-                        <a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/4s.jpg"></a>
-                        <a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/5s.jpg"></a>
-                        <a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/6s.jpg"></a>
-                        <a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/7s.jpg"></a>
-                        <a href="img/gallery/8.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/8s.jpg"></a>
-                        <a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img
-                                src="img/gallery/9s.jpg"></a>
-                        <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
-                        <div id="blueimp-gallery" class="blueimp-gallery">
-                            <div class="slides"></div>
-                            <h3 class="title"></h3>
-                            <a class="prev">‹</a>
-                            <a class="next">›</a>
-                            <a class="close">×</a>
-                            <a class="play-pause"></a>
-                            <ol class="indicator"></ol>
+                    <div class="col-lg-11">
+                        <div class="row">
+                            <div class="waterfall">
+                                <div class="item">
+                                    <button class="btn btn-outline btn-primary" ngf-select="uploadFiles($files)" multiple="multiple">上传图片</button>
+                                    <button class="btn btn-outline btn-danger" ng-click="">编辑</button>
+                                    <br><br>
+                                    <div class="row">
+                                        <!--<div class="col-lg-2">-->
+                                            <ul class="list-inline">
+                                                <li ng-repeat="f in files">
+                                                    <a href="" title="Image from Unsplash" data-gallery=""><img
+                                                            ngf-src="f">
+                                                        </a>
+                                                    <div class="row">
+                                                        <div class="col-xs-12">
+                                                            <button ng-click="" class="h5 right" style="float: left">删除</button>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div id="blueimp-gallery" class="blueimp-gallery">
+                                                <div class="slides"></div>
+                                                <h3 class="title"></h3>
+                                                <a class="prev">‹</a>
+                                                <a class="next">›</a>
+                                                <a class="close">×</a>
+                                                <a class="play-pause"></a>
+                                                <ol class="indicator"></ol>
+                                            </div>
+                                            
+                                        <!--</div>-->
+                                    </div>
+                                    
+                                    <!--//进度条-->
+                                    <div ng-repeat="f in files" >{{f.$errorParam}}
+                                        <div class="row">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                 </div>
             </form>
         </div>
     </tabset>
 </div>
+<!--<div class="wrapper wrapper-content">-->
+    <!--<tabset class="tab-container">-->
+        <!--<div class="ibox-content text-left p-md">-->
+            <!--<form class="form-horizontal" method="get">-->
+                <!--<div class="form-group"><label class="col-sm-1 control-label">图片:</label>-->
+                    <!--<div class="col-sm-11">-->
+                        <!--<a href="img/gallery/1.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/1s.jpg"></a>-->
+                        <!--<a href="img/gallery/2.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/2s.jpg"></a>-->
+                        <!--<a href="img/gallery/3.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/3s.jpg"></a>-->
+                        <!--<a href="img/gallery/4.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/4s.jpg"></a>-->
+                        <!--<a href="img/gallery/5.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/5s.jpg"></a>-->
+                        <!--<a href="img/gallery/6.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/6s.jpg"></a>-->
+                        <!--<a href="img/gallery/7.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/7s.jpg"></a>-->
+                        <!--<a href="img/gallery/8.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/8s.jpg"></a>-->
+                        <!--<a href="img/gallery/9.jpg" title="Image from Unsplash" data-gallery=""><img-->
+                                <!--src="img/gallery/9s.jpg"></a>-->
+                        <!--&lt;!&ndash; The Gallery as lightbox dialog, should be a child element of the document body &ndash;&gt;-->
+                        <!--<div id="blueimp-gallery" class="blueimp-gallery">-->
+                            <!--<div class="slides"></div>-->
+                            <!--<h3 class="title"></h3>-->
+                            <!--<a class="prev">‹</a>-->
+                            <!--<a class="next">›</a>-->
+                            <!--<a class="close">×</a>-->
+                            <!--<a class="play-pause"></a>-->
+                            <!--<ol class="indicator"></ol>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</tabset>-->
+<!--</div>-->
 <!--<style>-->
 <!--/* Local style for demo purpose */-->
 

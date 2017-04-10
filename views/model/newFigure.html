@@ -1,14 +1,14 @@
 <div class="ibox float-e-margins">
-    <div class="modal-header h3">
-        {{name}}
+    <div class="modal-header h4">
+        {{newadd}}
     </div>
     <div class="text-center p-md">
-        <form class="form-horizontal" method="get">
+        <form name="myForm" class="form-horizontal" method="get">
             <div class="form-group"><label class="col-sm-2 control-label">名称:</label>
-                <div class="col-sm-6"><input type="text" class="form-control" placeholder="请输入人物名称"></div>
+                <div class="col-sm-6"><input type="text" class="form-control" placeholder="请输入人物名称" ng-model="title"></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">头像:</label>
+                <label class="col-sm-2 control-label">图片:</label>
                 <div class="upload-div col-sm-6">
                     <div class="upload-buttons">
                         <div id="editArea">
@@ -35,8 +35,8 @@
                                          ngf-max-files="maxFiles"
                                          ngf-ignore-invalid="ignoreInvalid"
                                          ngf-run-all-validations="runAllValidations"
-                                         ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
-                                        图片上传
+                                         ngf-allow-dir="allowDir" class="drop-box"
+                                         ngf-drop-available="dropAvailable" ng-click="load()">图片上传
                                         <span ng-show="dropAvailable"></span>
                                     </div>
                                 </div>
@@ -48,10 +48,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">大图:</label>
+                <label class="col-sm-2 control-label">图片:</label>
                 <div class="upload-div col-sm-6">
                     <div class="upload-buttons">
-                        <div id="editArea1">
+                        <div id="editArea2">
                             <fieldset>
                                 <div class="preview">
                                     <img ngf-src="!files2[0].$error && files2[0]">
@@ -75,9 +75,9 @@
                                          ngf-max-files="maxFiles"
                                          ngf-ignore-invalid="ignoreInvalid"
                                          ngf-run-all-validations="runAllValidations"
-                                         ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
-                                        图片上传
-                                        <span ng-show="dropAvailable2"></span>
+                                         ngf-allow-dir="allowDir" class="drop-box"
+                                         ngf-drop-available="dropAvailable" ng-click="click()">图片上传
+                                        <span ng-show="dropAvailable"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -88,7 +88,17 @@
                 </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">简介:</label>
-                <div class="col-sm-10"><textarea type="text" class="form-control" placeholder="请输入人物简介"></textarea>
+                <div class="col-sm-10"><textarea type="text" class="form-control" placeholder="请输入人物简介" ng-model="description"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">序号：</label>
+                <div class="col-sm-5">
+                    <input type="number" name="count" ng-model="sort" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="count" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
                 </div>
             </div>
         </form>
@@ -96,7 +106,7 @@
     <div class="row">
         <div class="col-lg-5"></div>
         <div class="col-lg-5">
-            <button class="btn btn-lg btn-outline btn-primary">保存</button>
+            <button class="btn btn-lg btn-outline btn-primary" ng-click="preserve()">保存</button>
         </div>
     </div>
 </div>

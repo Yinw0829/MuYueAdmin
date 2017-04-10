@@ -20,7 +20,29 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
     });
 
     $stateProvider
-    // //首页管理
+    //卷管理
+    //     .state('volManage', {
+    //         url: "/volManage",
+    //         templateUrl: "views/common/volManage.html",
+    //         controller: "volManageCtrl",
+    //         resolve: {
+    //             loadPlugin: function ($ocLazyLoad) {
+    //                 return $ocLazyLoad.load([
+    //                     {
+    //                         files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+    //                             'css/plugins/blueimp/css/blueimp-gallery.min.css',
+    //                             'js/Upload/ng-file-upload-shim.js',
+    //                             'js/Upload/ng-file-upload.js'
+    //                             // 'js/angular/ui-bootstrap-tpls.js'
+    //
+    //                         ]
+    //                     }
+    //                 ]);
+    //             }
+    //         }
+    //     })
+
+        //首页管理
         .state('layouts', {
             url: "/layouts",
             templateUrl: "views/common/layouts.html",
@@ -55,7 +77,7 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         //卷-人物
         .state('volume.Figure', {
-            url: "/Figure/:volumeId",
+            url: "/Figure/:volumeLangId",
             templateUrl: "views/volume/Figure.html",
             params: {"volumeId": null},
             controller: "figureCtrl",
@@ -84,7 +106,10 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
                     return $ocLazyLoad.load([
                         {
                             files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
-                                'css/plugins/blueimp/css/blueimp-gallery.min.css']
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+                            ]
                         }
                     ]);
                 }

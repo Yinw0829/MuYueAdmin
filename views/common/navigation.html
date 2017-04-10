@@ -1,79 +1,58 @@
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul side-navigation class="nav metismenu" id="side-menu">
-            <li class="nav-header">
-                <h1>睦月后台</h1>
-                <!--<div class="profile-element" uib-dropdown>-->
-                    <!--<img alt="image" class="img-circle" src="img/profile_small.jpg"/>-->
-                    <!--<a uib-dropdown-toggle href>-->
-                            <!--<span class="clear">-->
-                                <!--<span class="block m-t-xs">-->
-                                    <!--<strong class="font-bold">David Williams</strong>-->
-                             <!--</span>-->
-                                <!--<span class="text-muted text-xs block">Art Director <b class="caret"></b></span>-->
-                            <!--</span>-->
-                    <!--</a>-->
-                    <!--<ul uib-dropdown-menu class="animated fadeInRight m-t-xs">-->
-                        <!--<li><a ui-sref="app.profile">Profile</a></li>-->
-                        <!--<li><a ui-sref="app.contacts">Contacts</a></li>-->
-                        <!--<li><a ui-sref="mailbox.inbox">Mailbox</a></li>-->
-                        <!--<li class="divider"></li>-->
-                        <!--<li><a ui-sref="login">Logout</a></li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="logo-element">-->
-                    <!--IN+-->
-                <!--</div>-->
-            </li>
+            <!--<li ui-sref-active="active">-->
+                <!--<a ui-sref="volManage"><i class="fa fa-edit"></i> <span class="nav-label">卷管理</span> </a>-->
+            <!--</li>-->
             <li ui-sref-active="active">
                 <a ui-sref="layouts"><i class="fa fa-diamond"></i> <span class="nav-label">首页管理</span> </a>
             </li>
             <!--有了数据在li这里ng-repeat就可以了-->
-            <li ng-class="{active: $state.includes('volume')}">
-                <a href><i class="fa fa-sitemap"></i> <span class="nav-label">推荐卷</span><span
+            <!--<li ng-class="{active: $state.includes('volume')}">-->
+                <!--<a href><i class="fa fa-sitemap"></i> <span class="nav-label">其他卷</span><span-->
+                        <!--class="fa arrow"></span></a>-->
+                <!--<ul class="nav nav-second-level collapse">-->
+                    <!--<li>-->
+                        <!--<a href="">概况 <span class="fa arrow"></span></a>-->
+                        <!--<ul class="nav nav-third-level collapse">-->
+                            <!--<li ui-sref-active="active">-->
+                                <!--&lt;!&ndash;把相应卷的ID丢进去查出来,下面的人物和CG图例也要这样做&ndash;&gt;-->
+                                <!--<a ui-sref="volume.World({volumeId:2})">世界观</a>-->
+                            <!--</li>-->
+                            <!--<li ui-sref-active="active">-->
+                                <!--<a ui-sref="volume.Figure({volumeLangId:2})">人物</a>-->
+                            <!--</li>-->
+                            <!--<li ui-sref-active="active">-->
+                                <!--<a ui-sref="volume.Legend({volumeId:2})">CG图例</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a ui-sref="volume.Catalog({volumeId:2})">目录</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <li ng-class="{active: $state.includes('volume')}" ng-repeat="y in volList">
+                <a href><i class="fa fa-sitemap"></i> <span class="nav-label">第<span ng-bind="y.volumeNo"></span>卷</span><span
                         class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
+                <ul class="nav nav-second-level collapse" >
                     <li>
                         <a href="">概况 <span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level collapse">
                             <li ui-sref-active="active">
                                 <!--把相应卷的ID丢进去查出来,下面的人物和CG图例也要这样做-->
-                                <a ui-sref="volume.World({volumeId:1})">世界观</a>
+                                <a ui-sref="volume.World({volumeId:id})" ng-click="volumeId">世界观</a>
                             </li>
                             <li ui-sref-active="active">
-                                <a ui-sref="volume.Figure({volumeId:1})">人物</a>
+                                <a ui-sref="volume.Figure({volumeLangId:id})">人物</a>
                             </li>
                             <li ui-sref-active="active">
-                                <a ui-sref="volume.Legend({volumeId:1})">CG图例</a>
+                                <a ui-sref="volume.Legend({volumeId:volumeId})">CG图例</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a ui-sref="volume.Catalog({volumeId:1})">目录</a>
-                    </li>
-                </ul>
-            </li>
-            <li ng-class="{active: $state.includes('volume')}">
-                <a href><i class="fa fa-sitemap"></i> <span class="nav-label">其他卷</span><span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a href="">概况 <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level collapse">
-                            <li ui-sref-active="active">
-                                <!--把相应卷的ID丢进去查出来,下面的人物和CG图例也要这样做-->
-                                <a ui-sref="volume.World({volumeId:2})">世界观</a>
-                            </li>
-                            <li ui-sref-active="active">
-                                <a ui-sref="volume.Figure({volumeId:2})">人物</a>
-                            </li>
-                            <li ui-sref-active="active">
-                                <a ui-sref="volume.Legend({volumeId:2})">CG图例</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a ui-sref="volume.Catalog({volumeId:2})">目录</a>
+                        <a ui-sref="volume.Catalog({volumeId:id})">目录</a>
                     </li>
                 </ul>
             </li>

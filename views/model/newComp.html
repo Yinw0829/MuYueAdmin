@@ -1,0 +1,66 @@
+<div class="ibox float-e-margins table m-b-none">
+    <div class="modal-header h4">
+        {{newcomp}}
+    </div>
+    <div class="text-center p-md">
+        <form name="myForm" class="form-horizontal" method="get">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">卷类型:</label>
+                <div class="col-sm-8"><select class="form-control w-lg inline " ng-required="true" ng-model="item.language">
+                    <option value="NORMAL">普通卷</option>
+                    <!--<option value="RECOMMEND">推荐卷</option>-->
+                    <!--<option value="OTHER">其他卷</option>-->
+                </select></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">序号：</label>
+                <div class="col-sm-5">
+                    <input type="number" name="sort" ng-model="item.sort" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="item.count" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">卷编号：</label>
+                <div class="col-sm-5">
+                    <input type="number" name="volumeNo" ng-model="item.volumeNo" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="volumeNo" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">中文名称：</label>
+                <div class="col-sm-5">
+                    <input type="text" name="volumeNo" ng-model="zh_ch" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r"  class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">繁体名称：</label>
+                <div class="col-sm-5">
+                    <input type="text" name="volumeNo" ng-model="zh_tw" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r"  class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">英文名称：</label>
+                <div class="col-sm-5">
+                    <input type="text" name="volumeNo" ng-model="en" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r"  class="form-control">
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-5">
+                <button class="btn-lg btn-primary btn-outline text-left" ng-click="keep()">保存</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
