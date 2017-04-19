@@ -21,26 +21,26 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 
     $stateProvider
     //卷管理
-    //     .state('volManage', {
-    //         url: "/volManage",
-    //         templateUrl: "views/common/volManage.html",
-    //         controller: "volManageCtrl",
-    //         resolve: {
-    //             loadPlugin: function ($ocLazyLoad) {
-    //                 return $ocLazyLoad.load([
-    //                     {
-    //                         files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
-    //                             'css/plugins/blueimp/css/blueimp-gallery.min.css',
-    //                             'js/Upload/ng-file-upload-shim.js',
-    //                             'js/Upload/ng-file-upload.js'
-    //                             // 'js/angular/ui-bootstrap-tpls.js'
-    //
-    //                         ]
-    //                     }
-    //                 ]);
-    //             }
-    //         }
-    //     })
+        .state('volManage', {
+            url: "/volManage",
+            templateUrl: "views/common/volManage.html",
+            controller: "volManageCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+                                // 'js/angular/ui-bootstrap-tpls.js'
+
+                            ]
+                        }
+                    ]);
+                }
+            }
+        })
 
         //首页管理
         .state('layouts', {
@@ -70,16 +70,29 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         //卷-世界观
         .state('volume.World', {
-            url: "/World/:volumeId",
+            url: "/World/:volumeId/:id",
             templateUrl: "views/volume/World.html",
-            params: {"volumeId": null},
-            controller: "worldCtrl"
+            params: {"volumeId": null,"id":null},
+            controller: "worldCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+                            ]
+                        }
+                    ]);
+                }
+            }
         })
         //卷-人物
         .state('volume.Figure', {
-            url: "/Figure/:volumeLangId",
+            url: "/Figure/:volumeId/:id",
             templateUrl: "views/volume/Figure.html",
-            params: {"volumeId": null},
+            params: {"volumeId": null,"id":null},
             controller: "figureCtrl",
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -97,9 +110,9 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         //卷-CG图例
         .state('volume.Legend', {
-            url: "/Legend/:volumeId",
+            url: "/Legend/:volumeId/:id",
             templateUrl: "views/volume/Legend.html",
-            params: {"volumeId": null},
+            params: {"volumeId": null,"id":null},
             controller: "legendCtrl",
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
@@ -117,10 +130,39 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
         })
         // //卷-目录
         .state('volume.Catalog', {
-            url: "/Catalog/:volumeId",
+            url: "/Catalog/:volumeId/:id",
             templateUrl: "views/volume/Catalog.html",
-            params: {"volumeId": null},
-            controller: "catalogCtrl"
+            params: {"volumeId": null,"id":null},
+            controller: "catalogCtrl",
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                        {
+                            files: ['js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                'js/Upload/ng-file-upload-shim.js',
+                                'js/Upload/ng-file-upload.js'
+                            ]
+                        }
+                    ]);
+                }
+            }
+            // resolve: {
+            //     loadPlugin: ['$ocLazyLoad',
+            //         function ($ocLazyLoad) {
+                    // return $ocLazyLoad.load('textAngular').then(
+                    //     function () {
+                    //         return $ocLazyLoad.load(
+                                // 'js/plugins/blueimp/jquery.blueimp-gallery.min.js',
+                                // 'css/plugins/blueimp/css/blueimp-gallery.min.css',
+                                // 'js/Upload/ng-file-upload-shim.js',
+                                // 'js/Upload/ng-file-upload.js'
+                                // 'js/textAngular/textAngular-sanitize.min.js',
+                                // 'js/textAngular/textAngular-rangy.min.js',
+                                // 'js/textAngular/textAngular.js'
+                            // )
+                        // }
+                    // )
         })
 
 
@@ -1594,6 +1636,19 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, IdlePro
 angular
     .module('inspinia')
     .config(config)
-    .run(function ($rootScope, $state) {
+    .run(["$rootScope", "$state", "$resource", 'MY', function ($rootScope, $state, $resource, MY) {
         $rootScope.$state = $state;
-    });
+        var url = MY.url;
+        var getList = $resource(url, {}, {
+            volList: {
+                url: url + 'volume/list',
+                method: 'GET',
+                isArray: false,
+                params: {type: 'NORMAL'}
+            }
+        });
+        getList.volList(function (resp) {
+            $rootScope.normalList = resp.rows;
+            console.log($rootScope.normalList)
+        })
+    }]);

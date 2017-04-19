@@ -12,9 +12,14 @@
         'ngSanitize',                    // ngSanitize
         'ngResource',                   //http
         'constantService',              //webConstant
-        'userCtrl',
         'ngFileUpload',
-        'appService'
+        'appService',
+        'userCtrl',
+        'indexCtrl',
+        'worldCtrl',
+        'roleCtrl',
+        'cgCtrl'
+
     ]);
 })();
 

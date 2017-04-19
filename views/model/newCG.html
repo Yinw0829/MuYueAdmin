@@ -9,43 +9,26 @@
                 <div class="upload-div col-sm-6">
                     <div class="upload-buttons">
                         <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
-                             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                             >上传</button>
-                        <img ngf-src="file" style="width: 300px; height: aut">
+                                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                        >上传</button>
+                        <img ngf-src="file" style="width: 300px; height: auto">
                     </div>
                     <br/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">标题:</label>
+                <label class="col-sm-2 control-label">名称:</label>
                 <div class="col-sm-8"><input type="text" class="form-control" ng-required="true" value="" ng-model="title"></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">简介:</label>
-                <div class="col-sm-8"><textarea type="text" class="form-control" ng-required="true" value="" ng-model="description"></textarea></div>
-            </div>
-            <div class="form-group"><label
-                    class="col-sm-2 control-label">链接：</label>
-                <div class="col-sm-5">
-                    <select class="form-control small" ng-model="volumeNo" name="volumeNo" ng-required="true" ng-options="y.volumeNo as y.typeName for y in normalList"></select>
-                </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">序号：</label>
                 <div class="col-sm-5">
                     <input type="number" name="count" ng-model="sort" ng-required="true"
-                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" max="5" ng-model="count" class="form-control">
-                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.max">
-                        序号不能超过5
-                    </div>
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="count" class="form-control">
                     <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
                         序号不能小于1
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">禁/启：</label>
-                <div class="col-sm-2"><button class="btn  btn-sm btn-info btn-addon"><i class="fa  fa-unlock"></i>启用</button></div>
             </div>
         </form>
         <div class="row">

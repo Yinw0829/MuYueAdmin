@@ -27,18 +27,18 @@
             <div class="col-lg-2">
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-10"></div>
-            <div class="col-sm-2">
-                <button class="btn btn-outline btn-lg btn-primary"  ng-click="newLay()">新增首页</button>
-            </div>
-        </div>
         <div class="wrapper-md">
             <tabset class="tab-container">
                 <tab>
                     <tab-heading>
                         中文简体
                     </tab-heading>
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-outline btn-lg btn-primary"  ng-click="newLay()">新增首页</button>
+                        </div>
+                    </div>
                     <div class="wrapper-md">
                         <div class="panel panel-default">
                             <div class="table-responsive">
@@ -47,22 +47,22 @@
                                     <thead>
                                     <tr>
                                         <th>序号</th>
-                                        <th>名称</th>
+                                        <th>标题</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr ng-repeat="y in userList">
+                                    <tr ng-repeat="y in FistList">
                                         <td ng-bind="$index+1"></td>
-                                        <td ng-bind="y.x">睦月·小说</td>
+                                        <td ng-bind="y.title"></td>
                                         <td>
-                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick()"><i
+                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(y.id)"><i
                                                     class="fa fa-laptop"></i>|查看详细
                                             </button>
-                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(y.id)"><i
                                                     class="fa fa-edit"></i>|编辑
                                             </button>
-                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(y.id)"><i
                                                     class="fa fa-unlock-alt"></i>|删除
                                             </button>
                                         </td>
@@ -77,6 +77,12 @@
                     <tab-heading>
                         中文繁体
                     </tab-heading>
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-outline btn-lg btn-primary"  ng-click="newLay()">新增首页</button>
+                        </div>
+                    </div>
                     <div class="wrapper-md">
                         <div class="panel panel-default">
                             <div class="table-responsive">
@@ -90,17 +96,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td ng-bind="$index+1">1</td>
-                                        <td>睦月·小说</td>
+                                    <tr ng-repeat="x in TwList">
+                                        <td ng-bind="$index+1"></td>
+                                        <td ng-bind="x.title"></td>
                                         <td>
-                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick()"><i
+                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(x.id)"><i
                                                     class="fa fa-laptop"></i>|查看详细
                                             </button>
-                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(x.id)"><i
                                                     class="fa fa-edit"></i>|编辑
                                             </button>
-                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(x.id)"><i
                                                     class="fa fa-unlock-alt"></i>|删除
                                             </button>
                                         </td>
@@ -115,6 +121,12 @@
                     <tab-heading>
                         English
                     </tab-heading>
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-outline btn-lg btn-primary"  ng-click="newLay()">新增首页</button>
+                        </div>
+                    </div>
                     <div class="wrapper-md">
                         <div class="panel panel-default">
                             <div class="table-responsive">
@@ -128,17 +140,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr ng-repeat="z in EnList">
                                         <td ng-bind="$index+1">1</td>
-                                        <td>睦月·小说</td>
+                                        <td ng-bind="z.title"></td>
                                         <td>
-                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick()"><i
+                                            <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(z.id)"><i
                                                     class="fa fa-laptop"></i>|查看详细
                                             </button>
-                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="compile()"><i
+                                            <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(z.id)"><i
                                                     class="fa fa-edit"></i>|编辑
                                             </button>
-                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                            <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(z.id)"><i
                                                     class="fa fa-unlock-alt"></i>|删除
                                             </button>
                                         </td>

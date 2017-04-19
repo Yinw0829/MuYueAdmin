@@ -4,84 +4,83 @@
     </div>
     <div class="text-center p-md">
         <form class="form-horizontal" method="get">
-            <div class="form-group"><label class="col-sm-2 control-label">语言:</label>
-                <div class="col-sm-10">
-                    <select class="form-control w-lg inline " ng-model="interviewAddressId"
-                            ng-options="x.id as x.address for x in inter">
-                    </select></div>
+            <div class="form-group">
+                <label class="col-sm-2 col-xs-2 control-label">名称:</label>
+                <div class="col-sm-10 col-xs-10">
+                    <input type="text" class="form-control" ng-model="oCataLogGroup.title" placeholder="请输入目录名称"></div>
             </div>
-            <div class="form-group"><label class="col-sm-2 control-label">名称:</label>
-                <div class="col-sm-3"><select class="form-control w-lg inline " ng-model="interviewAddress"
-                                              ng-options="x.id as x.address for x in inter">
-                </select></div>
-                <div class="col-sm-6"><input type="text" class="form-control" placeholder="请输入目录名称"></div>
+            <div class="form-group"><label class="col-sm-2 control-label">类型:</label>
+                <div class="col-sm-10 text-left">
+                    <select ng-init="sex='NOVEL'" ng-model="sex">
+                        <option value="NOVEL" ng-selected="sex=='NOVEL'">小说</option>
+                        <option value="CARTOON" ng-selected="sex=='CARTOON'">漫画</option>
+                        <option value="GAME" ng-selected="sex=='GAME'">游戏</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImg}}">图片:</label>
+                <div class="upload-div col-sm-6">
+                    <div class="upload-buttons">
+                        <button class="button" ngf-select ng-model="oCataLogGroup.file" name="file" ngf-pattern="'image/*'"
+                                ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                        >上传</button>
+                        <img ng-show="oCataLogGroup.file==undefined" ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{oCataLogGroup.imgPath}}" style="width: 100px; height: auto;">
+                        <img ng-show="oCataLogGroup.file!==undefined" ngf-src="oCataLogGroup.file" style="width: 100px; height: auto;">
+                    </div>
+                    <br/>
+                </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">简介:</label>
-                <div class="col-sm-10"><textarea type="text" class="form-control" placeholder="请输入目录简介"></textarea>
+                <div class="col-sm-10"><textarea type="text" ng-model="oCataLogGroup.introduction" class="form-control"
+                                                 placeholder="请输入目录简介"></textarea>
                 </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">概要:</label>
-                <div class="col-sm-10"><textarea type="text" class="form-control" placeholder="请输入目录概要"></textarea>
+                <div class="col-sm-10">
+                    <textarea type="text" ng-model="oCataLogGroup.description" class="form-control"></textarea>
                 </div>
             </div>
+            <div class="form-group"><label class="col-sm-2 control-label">链接名称:</label>
+                <div class="col-sm-10"><input type="text" class="form-control" ng-model="oCataLogGroup.urlName"></div>
+            </div>
             <div class="form-group"><label class="col-sm-2 control-label">链接:</label>
-                <div class="col-sm-10"><input type="text" class="form-control" placeholder="请输入外部链接"></div>
+                <div class="col-sm-10"><input type="text" class="form-control" ng-model="oCataLogGroup.url"
+                ></div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">时间排序:</label>
-                <div class="col-sm-10"><input type="text" class="form-control" placeholder="请输入时间"></div>
+                <div class="col-sm-10">
+                    <input type="number" name="count" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="oCataLogGroup.gameSort" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">分类排序:</label>
+                <div class="col-sm-10">
+                    <input type="number" name="count" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="oCataLogGroup.cartoonSort" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
+                    </div>
+                </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">自定义排序:</label>
                 <div class="col-sm-10">
-                <select class="form-control w-lg inline " ng-model="interviewAddress"
-                        ng-options="x.id as x.address for x in inter">
-                </select></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">图片:</label>
-                <div class="upload-div col-sm-6">
-                    <div class="upload-buttons">
-                        <div id="editArea">
-                            <fieldset>
-                                <div class="preview">
-                                    <img ngf-src="!files[0].$error && files[0]">
-                                    <!--<img ngf-src="item.type">-->
-                                    <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
-                                    <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
-                                </div>
-                                <div class="up-buttons">
-                                    <div ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
-                                         ngf-model-options="modelOptionsObj"
-                                         ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
-                                         ng-disabled="disabled" ngf-capture="capture"
-                                         ngf-drag-over-class="dragOverClassObj"
-                                         ngf-validate="validateObj"
-                                         ngf-resize="resizeObj"
-                                         ngf-resize-if="resizeIfFn($file, $width, $height)"
-                                         ngf-dimensions="dimensionsFn($file, $width, $height)"
-                                         ngf-duration="durationFn($file, $duration)"
-                                         ngf-keep="keepDistinct ? 'distinct' : keep"
-                                         ngf-fix-orientation="orientation"
-                                         ngf-max-files="maxFiles"
-                                         ngf-ignore-invalid="ignoreInvalid"
-                                         ngf-run-all-validations="runAllValidations"
-                                         ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
-                                        图片上传
-                                        <span ng-show="dropAvailable"></span>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </div>
+                    <input type="number" name="count" ng-model="oCataLogGroup.novelSort" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" class="form-control">
+                    <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
+                        序号不能小于1
                     </div>
-                    <br/>
-                    <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
                 </div>
             </div>
+            <div class="form-group">
         </form>
     </div>
     <div class="row">
-        <div class="col-lg-5"></div>
-        <div class="col-lg-5">
-            <button class="btn btn-lg btn-outline btn-primary">保存</button>
+        <div class="col-lg-12 text-center">
+            <button class="btn btn-lg btn-outline btn-primary" ng-click="preserve()">保存</button>
         </div>
     </div>
 </div>

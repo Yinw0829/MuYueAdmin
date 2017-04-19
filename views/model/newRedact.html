@@ -1,20 +1,20 @@
 <div class="ibox float-e-margins">
     <div class="modal-header h4">
-        {{user}}
+        {{redact1}}
     </div>
     <div class="text-center p-md">
         <form name="myForm" class="form-horizontal" method="get">
             <div class="form-group"><label class="col-sm-2 control-label">名称:</label>
-                <div class="col-sm-6"><input type="text" class="form-control" ng-model="title"></div>
+                <div class="col-sm-6"><input type="text" class="form-control" ng-model="group.title"></div>
             </div>
             <div class="form-group">
                     <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImgInd}}">头像:</label>
                     <div class="upload-div col-sm-6">
                         <div class="upload-buttons">
-                            <button class="button" ngf-select ng-model="avatorFile" name="file" ngf-pattern="'image/*'"
-                                    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                            >上传</button>
-                            <img ngf-src="avatorFile" style="width: 100px; height: auto">
+                            <button class="button" ngf-select ng-model="group.avatorFile" name="file" ngf-pattern="'image/*'"
+                                    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">上传</button>
+                            <img ng-show="group.avatorFile==undefined" ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{group.imgPath}}" style="width: 100px; height: auto;">
+                            <img ng-show="group.avatorFile!==undefined" ngf-src="group.avatorFile" style="width: 100px; height: auto;">
                         </div>
                         <br/>
                     </div>
@@ -23,27 +23,28 @@
                     <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImg}}">图片:</label>
                     <div class="upload-div col-sm-6">
                         <div class="upload-buttons">
-                            <button class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                            <button class="button" ngf-select ng-model="group.imgFile" name="avatorFile" ngf-pattern="'image/*'"
                                     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                             >上传</button>
-                            <img ngf-src="file" style="width: 300px; height: auto">
+                            <img  ng-show="group.imgFile==undefined" ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{group.avatorPath}}" style="width: 300px; height: 400px">
+                            <img  ng-show="group.imgFile!==undefined" ngf-src="group.imgFile" style="width: 300px; height:auto;">
                         </div>
                         <br/>
                     </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">简介:</label>
-                <div class="col-sm-10"><textarea type="text" class="form-control" ng-model="introduction"></textarea>
+                <div class="col-sm-10"><textarea type="text" class="form-control" ng-model="group.introduction"></textarea>
                 </div>
             </div>
             <div class="form-group"><label class="col-sm-2 control-label">描述:</label>
-                <div class="col-sm-10"><textarea type="text" class="form-control" ng-model="description"></textarea>
+                <div class="col-sm-10"><textarea type="text" class="form-control" ng-model="group.description"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">序号：</label>
                 <div class="col-sm-5">
-                    <input type="number" name="count" ng-model="sort" ng-required="true"
-                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1" ng-model="count" class="form-control">
+                    <input type="number" name="count" ng-model="group.sort" ng-required="true"
+                           class="form-control input-sm w-sm inline m-r" autocomplete="off" min="1"  class="form-control">
                     <div class="alert alert-danger help-block" ng-show="myForm.count.$error.min">
                         序号不能小于1
                     </div>

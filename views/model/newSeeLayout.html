@@ -5,72 +5,27 @@
     <div class="text-left p-md">
         <form name="myForm" class="form-horizontal" method="get">
             <div class="form-group">
-                <label class="col-sm-1 control-label">语言:</label>
-                <div class="col-sm-8"><span>中文简体</span></div>
+                <label class="col-sm-1">图片:</label>
+                <img ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{item.imgPath}}" alt="">
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">图片:</label>
-                <div class="upload-div col-sm-6"  >
-                    <div class="upload-buttons">
-                        <div id="editArea">
-                            <!--<fieldset>-->
-                            <div class="preview">
-                                <img ngf-src="!files[0].$error && files[0]">
-                                <!--<img ngf-src="item.type">-->
-                                <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
-                                <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
-                            </div>
-                            <div class="up-buttons">
-                                <button ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
-                                        ngf-model-options="modelOptionsObj"
-                                        ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
-                                        ng-disabled="disabled" ngf-capture="capture"
-                                        ngf-drag-over-class="dragOverClassObj"
-                                        ngf-validate="validateObj"
-                                        ngf-resize="resizeObj"
-                                        ngf-resize-if="resizeIfFn($file, $width, $height)"
-                                        ngf-dimensions="dimensionsFn($file, $width, $height)"
-                                        ngf-duration="durationFn($file, $duration)"
-                                        ngf-keep="keepDistinct ? 'distinct' : keep"
-                                        ngf-fix-orientation="orientation"
-                                        ngf-max-files="maxFiles"
-                                        ngf-ignore-invalid="ignoreInvalid"
-                                        ngf-run-all-validations="runAllValidations"
-                                        ngf-allow-dir="allowDir" ngf-drop-available="dropAvailable">图片上传
-                                    <span ng-show="dropAvailable"></span>
-                                </button>
-                            </div>
-                            <!--</fieldset>-->
-                        </div>
-                    </div>
-                    <br/>
-                    <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
-                </div>
+                <label class="col-sm-1">简介:</label>
+                <div class="col-sm-8" ng-bind="item.description"></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">简介:</label>
-                <div class="col-sm-8"><span>这是简介这是简介这是简介这是简介这是简介</span></div>
-            </div>
-            <div class="form-group"><label
-                    class="col-sm-1 control-label">链接：</label>
-                <div class="col-sm-5">
-                    <a href="https://www.baidu.com/">http://baidu.com</a>
-                </div>
+                <label class="col-sm-1">链接：</label>
+                <div class="col-sm-8" ng-bind="'第' + item.volumeNo + '卷'"></div>
             </div>
             <div class="form-group">
-                <label class="col-sm-1 control-label">序号：</label>
-                <div class="col-sm-5">
-                    <span>1</span>
-                </div>
+                <label class="col-sm-1">序号：</label>
+                <div class="col-sm-8" ng-bind="item.sort"></div>
             </div>
         </form>
         <div class="row">
             <div class="col-lg-4"></div>
             <div class="col-lg-5">
-                <button class="btn-lg btn-primary btn-outline" ng-click="ok()">确定</button>
+                <button class="btn-lg btn-primary btn-outline" ng-click="ok(item.id)">确定</button>
             </div>
         </div>
     </div>
-
-
 </div>

@@ -14,21 +14,18 @@
         </ol>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-10"></div>
-    <div class="col-sm-2">
-        <button class="btn btn-outline btn-lg btn-primary" ng-click="newCata();">
-            <i class="fa fa-plus"></i>新增
-        </button>
-    </div>
-</div>
-
 <div class="wrapper-md">
     <tabset class="tab-container">
-        <tab>
+        <tab ng-click="langClick(my.cn)">
             <tab-heading>
                 中文简体
             </tab-heading>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary"  ng-click="newCata()">新增目录</button>
+                </div>
+            </div>
             <div class="wrapper-md">
                 <div class="panel panel-default">
                     <div class="table-responsive">
@@ -38,21 +35,23 @@
                             <tr>
                                 <th>序号</th>
                                 <th>名称</th>
+                                <th>类型</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr ng-repeat="y in CataList">
                                 <td ng-bind="$index+1">1</td>
-                                <td>睦月·小说</td>
+                                <td ng-bind="y.title">睦月·漫畫</td>
+                                <td ng-bind="y.typeName">睦月·漫畫</td>
                                 <td>
-                                    <button class="btn  btn-sm btn-success btn-addon"  ng-click="check()"><i
+                                    <button class="btn  btn-sm btn-success btn-addon"  ng-click="seeCataLog(y.id);"><i
                                             class="fa fa-laptop"></i>|查看详细
                                     </button>
-                                    <button class="btn  btn-sm btn-info btn-addon" ng-click="redact()"><i
+                                    <button class="btn  btn-sm btn-info btn-addon" ng-click="redact(y.id)"><i
                                             class="fa fa-edit"></i>|编辑
                                     </button>
-                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick()"><i
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(y.id)"><i
                                             class="fa fa-unlock-alt"></i>|删除
                                     </button>
                                 </td>
@@ -70,10 +69,18 @@
                 </div>
             </div>
         </tab>
-        <tab>
+        <tab ng-click="langClick(my.tw)">
             <tab-heading>
                 中文繁體
             </tab-heading>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary" ng-click="newCata();">
+                        <i class="fa fa-plus"></i>新增目录
+                    </button>
+                </div>
+            </div>
             <div class="wrapper-md">
                 <div class="panel panel-default">
                     <div class="table-responsive">
@@ -83,13 +90,15 @@
                             <tr>
                                 <th>序号</th>
                                 <th>名称</th>
+                                <th>类型</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr ng-repeat="x in CataList">
                                 <td ng-bind="$index+1">1</td>
-                                <td>睦月·漫畫</td>
+                                <td ng-bind="x.title">睦月·漫畫</td>
+                                <td ng-bind="x.typeName">睦月·漫畫</td>
                                 <td>
                                     <button class="btn  btn-sm btn-success btn-addon" ng-click="check()"><i
                                             class="fa fa-laptop"></i>|查看详细
@@ -115,10 +124,18 @@
                 </div>
             </div>
         </tab>
-        <tab>
+        <tab ng-click="langClick(my.en)">
             <tab-heading>
                 English
             </tab-heading>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary" ng-click="newCata();">
+                        <i class="fa fa-plus"></i>新增目录
+                    </button>
+                </div>
+            </div>
             <div class="wrapper-md">
                 <div class="panel panel-default">
                     <div class="table-responsive">

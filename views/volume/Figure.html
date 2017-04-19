@@ -1,6 +1,6 @@
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>{{user}}</h2>
+        <h2>{{newFig}}</h2>
         <ol class="breadcrumb">
             <li>
                 <a href="index.html">首页</a>
@@ -14,136 +14,148 @@
         </ol>
     </div>
     <div class="col-lg-2">
-
+    
     </div>
 </div>
 <div class="wrapper-md">
     <tabset class="tab-container">
-        <tab>
+        <tab ng-click="langClick(my.cn)">
             <tab-heading>
                 中文简体
             </tab-heading>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary" ng-click="newLay()">新增首页</button>
+                </div>
+            </div>
             <div class="ibox-content text-left p-md">
-                <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" ng-model=""></div>
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>名称</th>
+                                <th>序号</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="y in FiguList">
+                                <td ng-bind="$index+1"></td>
+                                <td ng-bind="y.title"></td>
+                                <td ng-bind="y.sort"></td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(y.id)"><i
+                                            class="fa fa-laptop"></i>|查看详细
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(y.id)"><i
+                                            class="fa fa-edit"></i>|编辑
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(y.id)"><i
+                                            class="fa fa-unlock-alt"></i>|删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control"
-                                                         ng-model=""></textarea></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label">人物:</label>
-                        <div class="col-sm-7"></div>
-                        <div class="col-sm-4">
-                            <button class="btn-sm btn-outline btn-primary text-right" ng-model="chaaracter" ng-click="newFigure()">新增人物</button>
-                            <button class="btn-sm btn-outline btn-primary text-right" ng-model="FCompile" ng-click="FCompile()">编辑</button>
-                        </div>
-                       
-                        
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-5"></div>
-                        <div class="col-lg-5">
-                            <button class="btn-lg btn-outline btn-primary">保存</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </tab>
-        <tab>
+        <tab ng-click="langClick(my.tw)">
             <tab-heading>
                 中文繁体
             </tab-heading>
-            <div class="ibox-content text-center p-md">
-                <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary" ng-click="newLay()">新增首页</button>
+                </div>
+            </div>
+            <div class="ibox-content text-left p-md">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>名称</th>
+                                <th>序号</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="x in FiguList">
+                                <td ng-bind="$index+1"></td>
+                                <td ng-bind="x.title"></td>
+                                <td ng-bind="x.sort"></td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(x.id)"><i
+                                            class="fa fa-laptop"></i>|查看详细
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(x.id)"><i
+                                            class="fa fa-edit"></i>|编辑
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(x.id)"><i
+                                            class="fa fa-unlock-alt"></i>|删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control"
-                                                         value="请输入世界观的简介"></textarea></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label">人物:</label>
-                        <div class="col-lg-11">
-                            <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
-                                    accept="image/*" ngf-max-height="10000" ngf-max-size="1MB">
-                                上傳圖片
-                            </button>
-                            <br><br>
-                            <img class="figure" ng-repeat="f in files1" ngf-src="f">
-                            <!--//进度条-->
-                            <div ng-repeat="f in files1">{{f.$errorParam}}
-                                <span class="progress1"
-                                      style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
-                                      ng-show="f.progress >= 0">
-                                       <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5">
-                            <button class="btn-lg btn-outline btn-primary">保存</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </tab>
-        <tab>
+        <tab ng-click="langClick(my.en)">
             <tab-heading>
                 English
             </tab-heading>
-            <div class="ibox-content text-center p-md">
-                <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+            <div class="row">
+                <div class="col-sm-10"></div>
+                <div class="col-sm-2">
+                    <button class="btn btn-outline btn-lg btn-primary" ng-click="newLay()">新增首页</button>
+                </div>
+            </div>
+            <div class="ibox-content text-left p-md">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table m-b-none" ui-jq="footable" data-filter="#filter"
+                               data-page-size="15">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>名称</th>
+                                <th>序号</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="z in FiguList">
+                                <td ng-bind="$index+1"></td>
+                                <td ng-bind="z.title"></td>
+                                <td ng-bind="z.sort"></td>
+                                <td>
+                                    <button class="btn  btn-sm btn-success btn-addon" ng-click="seeClick(z.id)"><i
+                                            class="fa fa-laptop"></i>|查看详细
+                                    </button>
+                                    <button class="btn  btn-sm btn-info btn-addon" ng-click="reductClick(z.id)"><i
+                                            class="fa fa-edit"></i>|编辑
+                                    </button>
+                                    <button class="btn  btn-sm btn-danger btn-addon" ng-click="delClick(z.id)"><i
+                                            class="fa fa-unlock-alt"></i>|删除
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control"
-                                                         value="请输入世界观的简介"></textarea></div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-1 control-label">人物:</label>
-                        <div class="col-lg-11">
-                            <button ngf-select="uploadFiles($files, $invalidFiles)" multiple
-                                    accept="image/*" ngf-max-height="10000" ngf-max-size="1MB">
-                                Upload Photo
-                            </button>
-                            <br><br>
-                            <img class="figure" ng-repeat="f in files" ngf-src="f">
-                            <!--//进度条-->
-                            <div ng-repeat="f in files">{{f.$errorParam}}
-                                <span class="progress1"
-                                      style="display: inline-block; width: 100px;border: 3px groove #CCC; float: left; margin-left: 90px;"
-                                      ng-show="f.progress >= 0">
-                                       <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div>
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5">
-                            <button class="btn-lg btn-outline btn-primary">保存</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </tab>
     </tabset>
 </div>
-<!--<style>-->
-<!--/* Local style for demo purpose */-->
-
-<!--.lightBoxGallery {-->
-<!--text-align: center;-->
-<!--}-->
-
-<!--.lightBoxGallery img {-->
-<!--margin: 5px;-->
-<!--}-->
-
-<!--</style>-->

@@ -14,220 +14,517 @@
         </ol>
     </div>
     <div class="col-lg-2">
-
+    
     </div>
 </div>
 <div class="wrapper-md">
     <tabset class="tab-container">
-        <tab>
+        <tab ng-init="myLang.ch='zh_cn'" ng-click="seeLang(myLang.cn)">
             <tab-heading>
                 中文简体
             </tab-heading>
-            <div class="ibox-content p-md">
+            <!--没有列表-->
+            <div class="ibox-content p-md" ng-show="upLoadBtn==false;">
                 <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
                         <div class="col-sm-11">
-                            <input type="text" class="form-control"  ng-hide="queen">
-                            <span class="text-left" ng-show="queen">代号红皇后·小说</span>
+                            <input type="text" class="form-control" ng-model="worldData.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.title" name="title">
                         </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
                         <div class="col-sm-11">
-                            <textarea type="text" class="form-control" ng-hide="queen"> </textarea>
-                            <span class="text-left" ng-show="queen">代号红皇后·简介代号红皇后·简介代号红皇后·简介代号红皇后·简介代号红皇后·简介</span>
+                            <textarea type="text" class="form-control" ng-model="worldData.introduction"> </textarea>
                         </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" ng-hide="queen"></textarea>
-                            <span class="text-left" ng-show="queen">代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要代号红皇后·概要</span>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="worldData.description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">图片:</label>
                         <div class="upload-div col-sm-6">
                             <div class="upload-buttons">
-                                <div id="editArea">
-                                    <fieldset>
-                                        <div class="preview">
-                                            <img ngf-src="!files[0].$error && files[0]">
-                                            <!--<img ngf-src="item.type">-->
-                                            <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
-                                            <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
-                                        </div>
-                                        <div class="up-buttons">
-                                            <div ngf-select ngf-drop ng-model="files" ngf-model-invalid="invalidFiles"
-                                                 ngf-model-options="modelOptionsObj"
-                                                 ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
-                                                 ng-disabled="disabled" ngf-capture="capture"
-                                                 ngf-drag-over-class="dragOverClassObj"
-                                                 ngf-validate="validateObj"
-                                                 ngf-resize="resizeObj"
-                                                 ngf-resize-if="resizeIfFn($file, $width, $height)"
-                                                 ngf-dimensions="dimensionsFn($file, $width, $height)"
-                                                 ngf-duration="durationFn($file, $duration)"
-                                                 ngf-keep="keepDistinct ? 'distinct' : keep"
-                                                 ngf-fix-orientation="orientation"
-                                                 ngf-max-files="maxFiles"
-                                                 ngf-ignore-invalid="ignoreInvalid"
-                                                 ngf-run-all-validations="runAllValidations"
-                                                 ngf-allow-dir="allowDir" class="drop-box"
-                                                 ngf-drop-available="dropAvailable">图片上传
-                                                <span ng-show="dropAvailable"></span>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                <button class="button" ngf-select ng-model="worldData.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">上传
+                                </button>
+                                <img ngf-src="worldData.file">
                             </div>
                             <br/>
                             <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">人物标题</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" ng-hide="queen">
-                            <span class="text-left" ng-show="queen">人物介绍·代号红皇后</span>
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="worldData.caricatureTitle">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-1 control-label">CG标题</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" ng-hide="queen">
-                            <span class="text-left" ng-show="queen">代号红皇后·CG欣赏</span>
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.cgTitle">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-5"></div>
                         <div class="col-lg-5">
-                            <button class="btn-lg btn-outline btn-primary" ng-click="preserve()" ng-hide="queen">保存</button>
-                            <button class="btn-lg btn-outline btn-primary" ng-click="preserve()" ng-show="queen">编辑</button>
+                            <button class="btn-lg btn-outline btn-primary" ng-click="newUpData()"
+                                    ng-show="upLoadBtn==false;">保存
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </tab>
-        <tab>
-            <tab-heading>
-                中文繁体
-            </tab-heading>
-            <div class="ibox-content p-md">
+            <!--有列表情况下的编辑-->
+            <div class="ibox-content p-md" ng-show="spanShow==true;">
                 <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.title" name="title">
+                        </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的简介"></textarea>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control"
+                                      ng-model="loadList.result.introduction"> </textarea>
                         </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的概要"></textarea>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="loadList.result.description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">图片:</label>
                         <div class="upload-div col-sm-6">
                             <div class="upload-buttons">
-                                <div id="editArea1">
-                                    <fieldset>
-                                        <div class="preview">
-                                            <img ngf-src="!files1[0].$error && files1[0]">
-                                            <!--<img ngf-src="item.type">-->
-                                            <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
-                                            <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
-                                        </div>
-                                        <div class="up-buttons">
-                                            <div ngf-select ngf-drop ng-model="files1" ngf-model-invalid="invalidFiles"
-                                                 ngf-model-options="modelOptionsObj"
-                                                 ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
-                                                 ng-disabled="disabled" ngf-capture="capture"
-                                                 ngf-drag-over-class="dragOverClassObj"
-                                                 ngf-validate="validateObj"
-                                                 ngf-resize="resizeObj"
-                                                 ngf-resize-if="resizeIfFn($file, $width, $height)"
-                                                 ngf-dimensions="dimensionsFn($file, $width, $height)"
-                                                 ngf-duration="durationFn($file, $duration)"
-                                                 ngf-keep="keepDistinct ? 'distinct' : keep"
-                                                 ngf-fix-orientation="orientation"
-                                                 ngf-max-files="maxFiles"
-                                                 ngf-ignore-invalid="ignoreInvalid"
-                                                 ngf-run-all-validations="runAllValidations"
-                                                 ngf-allow-dir="allowDir" class="drop-box"
-                                                 ngf-drop-available="dropAvailable">图片上传
-                                                <span ng-show="dropAvailable"></span>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                <button class="button" ngf-select ng-model="loadList.result.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">修改
+                                </button>
+                                <img ng-show="loadList.result.file==undefined" ng-src="http://localhost:8087/MuYueAdmin/api/img?path={{loadList.result.imgPath}}">
+                                <img ngf-src="loadList.result.file" ng-show="loadList.result.file!==undefined">
                             </div>
                             <br/>
                             <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="loadList.result.caricatureTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.cgTitle">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-5"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="editUpData(result.id)"
+                                    ng-show="upLoadBtn==true;">编辑保存
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--有列表下的展示-->
+            <div class="ibox-content p-md" ng-show="loadList.success==true && spanShow==false;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.title" name="title"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.introduction"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <span class="text-left" ng-bind="loadList.result.description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <img ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{loadList.result.imgPath}}" alt="">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.caricatureTitle"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.cgTitle"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="worldRedact()">编辑</button>
+                        </div>
                     </div>
                 </form>
             </div>
         </tab>
-        <tab>
+        <tab ng-click="seeLang(myLang.tw)">
             <tab-heading>
-                English
+                中文繁体
             </tab-heading>
-            <div class="ibox-content text-center p-md">
+            <!--没有列表-->
+            <div class="ibox-content p-md" ng-show="upLoadBtn==false;">
                 <form class="form-horizontal" method="get">
-                    <div class="form-group"><label class="col-sm-1 control-label">名称:</label>
-                        <div class="col-sm-11"><input type="text" class="form-control" value=""></div>
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.title" name="title">
+                        </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的简介"></textarea>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control" ng-model="worldData.introduction"> </textarea>
                         </div>
                     </div>
                     <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
-                        <div class="col-sm-11"><textarea type="text" class="form-control" value="请输入世界观的概要"></textarea>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="worldData.description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-1 control-label">图片:</label>
                         <div class="upload-div col-sm-6">
                             <div class="upload-buttons">
-                                <div id="editArea2">
-                                    <fieldset>
-                                        <div class="preview">
-                                            <img ngf-src="!files2[0].$error && files2[0]">
-                                            <!--<img ngf-src="item.type">-->
-                                            <!--<audio controls ngf-src="!files[0].$error && files[0]"></audio>-->
-                                            <!--<video controls ngf-src="!files[0].$error && files[0]"></video>-->
-                                        </div>
-                                        <div class="up-buttons">
-                                            <div ngf-select ngf-drop ng-model="files2" ngf-model-invalid="invalidFiles"
-                                                 ngf-model-options="modelOptionsObj"
-                                                 ngf-multiple="true" ngf-pattern="pattern" ngf-accept="acceptSelect"
-                                                 ng-disabled="disabled" ngf-capture="capture"
-                                                 ngf-drag-over-class="dragOverClassObj"
-                                                 ngf-validate="validateObj"
-                                                 ngf-resize="resizeObj"
-                                                 ngf-resize-if="resizeIfFn($file, $width, $height)"
-                                                 ngf-dimensions="dimensionsFn($file, $width, $height)"
-                                                 ngf-duration="durationFn($file, $duration)"
-                                                 ngf-keep="keepDistinct ? 'distinct' : keep"
-                                                 ngf-fix-orientation="orientation"
-                                                 ngf-max-files="maxFiles"
-                                                 ngf-ignore-invalid="ignoreInvalid"
-                                                 ngf-run-all-validations="runAllValidations"
-                                                 ngf-allow-dir="allowDir" class="drop-box"
-                                                 ngf-drop-available="dropAvailable">图片上传
-                                                <span ng-show="dropAvailable"></span>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
+                                <button class="button" ngf-select ng-model="worldData.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">上传
+                                </button>
+                                <img ngf-src="worldData.file">
                             </div>
                             <br/>
                             <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="worldData.caricatureTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.cgTitle">
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5"><button class="btn-lg btn-outline btn-primary">保存</button></div>
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="newUpData()"
+                                    ng-show="upLoadBtn==false;">保存
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--有列表情况下的编辑-->
+            <div class="ibox-content p-md" ng-show="spanShow==true;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.title" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control"
+                                      ng-model="loadList.result.introduction"> </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="loadList.result.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <div class="upload-div col-sm-6">
+                            <div class="upload-buttons">
+                                <button class="button" ngf-select ng-model="loadList.result.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">修改
+                                </button>
+                                <img ng-show="loadList.result.file==undefined" ng-src="http://localhost:8087/MuYueAdmin/api/img?path={{loadList.result.imgPath}}">
+                                <img ngf-src="loadList.result.file" ng-show="loadList.result.file!==undefined">
+                            </div>
+                            <br/>
+                            <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="loadList.result.caricatureTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.cgTitle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="editUpData(result.id)"
+                                    ng-show="upLoadBtn==true;">编辑保存
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--有列表下的展示-->
+            <div class="ibox-content p-md" ng-show="loadList.success==true && spanShow==false;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.title" name="title"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.introduction"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <span class="text-left" ng-bind="loadList.result.description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <img ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{loadList.result.imgPath}}" alt="">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.caricatureTitle"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.cgTitle"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="worldRedact()">编辑</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </tab>
+        <tab ng-click="seeLang(myLang.en)">
+            <tab-heading>
+                English
+            </tab-heading>
+            <!--没有列表-->
+            <div class="ibox-content p-md" ng-show="upLoadBtn==false;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.title" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control" ng-model="worldData.introduction"> </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="worldData.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <div class="upload-div col-sm-6">
+                            <div class="upload-buttons">
+                                <button class="button" ngf-select ng-model="worldData.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">上传
+                                </button>
+                                <img ngf-src="worldData.file">
+                            </div>
+                            <br/>
+                            <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="worldData.caricatureTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="worldData.cgTitle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="newUpData()"
+                                    ng-show="upLoadBtn==false;">保存
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--有列表情况下的编辑-->
+            <div class="ibox-content p-md" ng-show="spanShow==true;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.title" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <textarea type="text" class="form-control"
+                                      ng-model="loadList.result.introduction"> </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <div class="col-sm-11"><textarea type="text" class="form-control"
+                                                         ng-model="loadList.result.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <div class="upload-div col-sm-6">
+                            <div class="upload-buttons">
+                                <button class="button" ngf-select ng-model="loadList.result.file" name="file"
+                                        ngf-pattern="'image/*'"
+                                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">修改
+                                </button>
+                                <img ng-show="loadList.result.file==undefined" ng-src="http://localhost:8087/MuYueAdmin/api/img?path={{loadList.result.imgPath}}">
+                                <img ngf-src="loadList.result.file" ng-show="loadList.result.file!==undefined">
+                            </div>
+                            <br/>
+                            <div style="clear:both" class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11"><input type="text" class="form-control"
+                                                      ng-model="loadList.result.caricatureTitle">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" ng-model="loadList.result.cgTitle">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="editUpData(result.id)"
+                                    ng-show="upLoadBtn==true;">编辑保存
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--有列表下的展示-->
+            <div class="ibox-content p-md" ng-show="loadList.success==true && spanShow==false;">
+                <form class="form-horizontal" method="get">
+                    <div class="form-group"><label class="col-sm-1 control-label">卷名称:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.title" name="title"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">简介:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.introduction"></span>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="col-sm-1 control-label">概要:</label>
+                        <span class="text-left" ng-bind="loadList.result.description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">图片:</label>
+                        <img ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{loadList.result.imgPath}}" alt="">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">人物标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.caricatureTitle"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">CG标题:</label>
+                        <div class="col-sm-11">
+                            <span class="text-left" ng-bind="loadList.result.cgTitle"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5"></div>
+                        <div class="col-lg-5">
+                            <button class="btn-lg btn-outline btn-primary" ng-click="worldRedact()">编辑</button>
+                        </div>
                     </div>
                 </form>
             </div>

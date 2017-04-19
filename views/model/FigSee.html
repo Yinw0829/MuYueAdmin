@@ -1,0 +1,38 @@
+<div class="ibox float-e-margins">
+    <div class="modal-header h4">
+        {{see}}
+    </div>
+    <div class="text-left p-md">
+        <form name="myForm" class="form-horizontal" method="get">
+            <div class="form-group"><label class="col-sm-2 control-label">名称:</label>
+                <div class="col-sm-8" ng-bind="item.title"></div>
+            </div>
+            <div class="form-group">
+                    <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImgInd}}">头像:</label>
+                <img class="col-sm-8"  ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{item.imgPath}}" style="width: 100px;height: auto;" alt="">
+                
+            </div>
+            <div class="form-group">
+                    <label class="col-sm-2 control-label" ng-required="true" ng-src="{{uploadImg}}">图片:</label>
+                <img class="col-sm-8"  ng-src="http://localhost:8087/MuYUeAdmin/api/img?path={{item.avatorPath}}" style="width: 300px;height: auto;" alt="">
+
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">简介:</label>
+                <div class="col-sm-8" ng-bind="item.introduction"></div>
+            </div>
+            <div class="form-group"><label class="col-sm-2 control-label">描述:</label>
+                <div class="col-sm-8" ng-bind="item.description"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">序号：</label>
+                <div class="col-sm-8" ng-bind="item.sort"></div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-5"></div>
+        <div class="col-lg-5">
+            <button class="btn btn-lg btn-outline btn-primary" ng-click="preserve()">保存</button>
+        </div>
+    </div>
+</div>
